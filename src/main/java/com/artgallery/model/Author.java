@@ -1,5 +1,7 @@
 package com.artgallery.model;
 
+import java.util.Objects;
+
 public class Author {
     private String firstName;
     private String lastName;
@@ -40,5 +42,18 @@ public class Author {
 
     public String getDescription() {
         return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(country, author.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, country);
     }
 }

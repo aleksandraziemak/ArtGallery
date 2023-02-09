@@ -1,5 +1,6 @@
 package com.artgallery;
 
+import com.artgallery.model.Author;
 import com.artgallery.model.Painting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,9 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ArtRepository {
+
     private static final String PATH_TO_JSON_FILE = "src/main/resources/Paintings.json";
 
-    public List<Painting> getPaintingsFromJsonFile() {
+    public List<Painting> getPaintings() {
         ArrayList<Painting> paintings = new ArrayList<>();
         final JSONParser parser = new JSONParser();
         try {

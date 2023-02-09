@@ -35,6 +35,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("Your Artists");
+                artService.showMyArtists();
                 break;
             case 3:
                 System.out.println("Buy Painting");
