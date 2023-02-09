@@ -13,4 +13,32 @@ public class Author {
         this.lastName = lastName;
         this.country = country;
     }
+
+    public void setFirstName() {
+        this.firstName = firstName;
+    }
+
+    public void setLastName() {
+        this.lastName = lastName;
+    }
+
+    public void setCountry() {
+        this.country = country;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return  this.lastName;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public String getDescription() {
+        return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
+    }
 }

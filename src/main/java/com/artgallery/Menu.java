@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Menu {
 
+    private static final ArtService artService = new ArtService();
+
     public static void mainMenu() {
         Scanner scanner = new Scanner(System.in);
         int option;
@@ -29,6 +31,7 @@ public class Menu {
         switch (option) {
             case 1:
                 System.out.println("Your Art collection");
+                artService.showMyCollection();
                 break;
             case 2:
                 System.out.println("Your Artists");
