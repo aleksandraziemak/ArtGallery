@@ -1,35 +1,57 @@
 [
   {
-    "author": {
-      "firstName": "Claude",
-      "lastName": "Monet",
-      "country": "France"
-    },
-    "title": "Impression, Sunrise",
-    "year": 1872,
-    "movement": "Impressionism",
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507ca"
-  },
-  {
-    "author": {
-      "firstName": "Claude",
-      "lastName": "Monet",
-      "country": "France"
-    },
-    "title": "Waterlilies",
-    "year": 1899,
-    "movement": "Impressionism",
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba"
-  },
-  {
+    "year": 1506,
     "author": {
       "firstName": "Leonardo",
       "lastName": "Da Vinci",
       "country": "Italy"
     },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507de",
     "title": "Mona Lisa",
-    "year": 1506,
-    "movement": "Renaissance",
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507de"
+    "movement": "Renaissance"
+  },
+  {
+    "year": 1872,
+    "author": {
+      "firstName": "Claude",
+      "lastName": "Monet",
+      "country": "France"
+    },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507ca",
+    "title": "Impression, Sunrise",
+    "movement": "Impressionism"
+  },
+  {
+    "year": 1899,
+    "author": {
+      "firstName": "Claude",
+      "lastName": "Monet",
+      "country": "France"
+    },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
+    "title": "Waterlilies",
+    "movement": "Impressionism"
+  },
+  {
+    "year": 1962,
+    "author": {
+      "firstName": "Andy",
+      "lastName": "Warhol",
+      "country": "USA"
+    },
+    "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
+    "title": "Marilyn Diptych",
+    "movement": "Pop art"
+  },
+  {
+    "year": 1872,
+    "author": {
+      "firstName": "Jan",
+      "lastName": "Matejko",
+      "country": "Poland"
+    },
+    "id": "ae59ba42-bc94-4567-88f5-96b83b593388",
+    "title": "Battle of Grunwald",
+    "movement": "-"
   }
 ]
