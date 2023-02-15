@@ -20,9 +20,10 @@ public class Menu {
         System.out.println("Art Gallery");
         System.out.println("1. Show Art collection");
         System.out.println("2. Show Artists");
-        System.out.println("3. Buy Painting");
-        System.out.println("4. Sell Painting");
-        System.out.println("5. Bank balance");
+        System.out.println("3. Edit Art collection");
+        System.out.println("4. Buy Painting");
+        System.out.println("5. Sell Painting");
+        System.out.println("6. Bank balance");
         System.out.println("0. Exit");
         System.out.println("Choose option:");
     }
@@ -38,12 +39,15 @@ public class Menu {
                 artService.showMyArtists();
                 break;
             case 3:
-                artService.buyPainting();
+                artService.editPainting();
                 break;
             case 4:
-                artService.sellPainting();
+                artService.buyPainting();
                 break;
             case 5:
+                artService.sellPainting();
+                break;
+            case 6:
                 System.out.println("Your Bank balance");
                 break;
             case 0:
