@@ -1,16 +1,5 @@
 [
   {
-    "year": 1506,
-    "author": {
-      "firstName": "Leonardo",
-      "lastName": "Da Vinci",
-      "country": "Italy"
-    },
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507de",
-    "title": "Mona Lisa",
-    "movement": "Renaissance"
-  },
-  {
     "year": 1872,
     "author": {
       "firstName": "Claude",
@@ -42,5 +31,16 @@
     "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
     "title": "Marilyn Diptych",
     "movement": "Pop art"
+  },
+  {
+    "year": 1506,
+    "author": {
+      "firstName": "Leonardo",
+      "lastName": "Da Vinci",
+      "country": "Italy"
+    },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507de",
+    "title": "Mona Lisa",
+    "movement": "Renaissance"
   }
 ]
