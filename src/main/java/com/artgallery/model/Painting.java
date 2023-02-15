@@ -1,5 +1,6 @@
 package com.artgallery.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Painting {
@@ -9,11 +10,11 @@ public class Painting {
     private Author author;
     private UUID id;
 
-    public Painting (UUID id) {
+    public Painting(UUID id) {
         this.id = id;
     }
 
-    public Painting (String title, String movement, long year, Author author, UUID id) {
+    public Painting(String title, String movement, long year, Author author, UUID id) {
         this.title = title;
         this.year = year;
         this.movement = movement;
@@ -50,7 +51,7 @@ public class Painting {
     }
 
     public UUID getId() {
-        return  this.id;
+        return this.id;
     }
 
     public Author getAuthor() {
@@ -58,11 +59,27 @@ public class Painting {
     }
 
     public String getDescription() {
-        return String.format("Title: %s, Year: %s, Movement: %s",title, year, movement);
+        return String.format("Title: %s, Year: %s, Movement: %s", title, year, movement);
     }
 
+    public String getShortDesctription() {
+        return String.format("Title: %s, Author: %s %s", title, author.getFirstName(), author.getLastName());
+    }
 
     public String getFullDescription() {
         return getDescription() + "\n" + author.getDescription();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Painting painting = (Painting) o;
+        return Objects.equals(id, painting.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
