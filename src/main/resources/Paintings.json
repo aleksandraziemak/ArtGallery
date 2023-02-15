@@ -36,22 +36,11 @@
     "year": 1962,
     "author": {
       "firstName": "Andy",
-      "lastName": "Warhol",
+      "lastName": "Worhol",
       "country": "USA"
     },
     "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
     "title": "Marilyn Diptych",
     "movement": "Pop art"
-  },
-  {
-    "year": 1872,
-    "author": {
-      "firstName": "Jan",
-      "lastName": "Matejko",
-      "country": "Poland"
-    },
-    "id": "ae59ba42-bc94-4567-88f5-96b83b593388",
-    "title": "Battle of Grunwald",
-    "movement": "-"
   }
 ]

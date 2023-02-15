@@ -1,6 +1,5 @@
 package com.artgallery;
 
-import com.artgallery.model.Author;
 import com.artgallery.model.Painting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,15 +9,13 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ArtRepository {
 
     private static final String PATH_TO_JSON_FILE = "src/main/resources/Paintings.json";
+    Scanner scanner = new Scanner(System.in);
 
     public List<Painting> getPaintings() {
         ArrayList<Painting> paintings = new ArrayList<>();
@@ -36,10 +33,17 @@ public class ArtRepository {
     }
 
     public void addPainting(Painting painting) {
-        List <Painting> paintings = getPaintings();
+        List<Painting> paintings = getPaintings();
         paintings.add(painting);
         JSONArray jsonPainting = ArtMapper.mapPaintings(paintings);
         writeToFile(jsonPainting);
+    }
+
+    public void sellPainting(Painting painting) {
+        List<Painting> paintings = getPaintings();
+        paintings.remove(painting);
+        JSONArray jsonPaintings = ArtMapper.mapPaintings(paintings);
+        writeToFile(jsonPaintings);
     }
 
     private void writeToFile(JSONArray jsonPaintings) {

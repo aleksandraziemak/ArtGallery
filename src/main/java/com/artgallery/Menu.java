@@ -38,11 +38,10 @@ public class Menu {
                 artService.showMyArtists();
                 break;
             case 3:
-                System.out.println("Buy Painting");
                 artService.buyPainting();
                 break;
             case 4:
-                System.out.println("Sell Painting");
+                artService.sellPainting();
                 break;
             case 5:
                 System.out.println("Your Bank balance");
