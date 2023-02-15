@@ -2,8 +2,10 @@ package com.artgallery;
 
 import com.artgallery.model.Author;
 import com.artgallery.model.Painting;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ArtMapper {
@@ -17,8 +19,15 @@ public class ArtMapper {
     private static final String LAST_NAME = "lastName";
     private static final String COUNTRY = "country";
 
+    public static JSONArray mapPaintings(List<Painting> paintings) {
+        JSONArray jsonPaintings = new JSONArray();
+        paintings.stream()
+                .map(ArtMapper::mapPainting)
+                .forEach(jsonPaintings::add);
+        return jsonPaintings;
+    }
 
-/*    private static JSONObject mapPainting(Painting painting) {
+    public static JSONObject mapPainting(Painting painting) {
         JSONObject newPainting = new JSONObject();
         newPainting.put(TITLE, painting.getTitle());
         newPainting.put(YEAR, painting.getYear());
@@ -27,10 +36,10 @@ public class ArtMapper {
         JSONObject newAuthor = new JSONObject();
         newAuthor.put(FIRST_NAME, painting.getAuthor().getFirstName());
         newAuthor.put(LAST_NAME, painting.getAuthor().getLastName());
-        newAuthor.put(COUNTRY, painting.getAuthor().getLastName());
+        newAuthor.put(COUNTRY, painting.getAuthor().getCountry());
         newPainting.put(AUTHOR, newAuthor);
         return newPainting;
-    }*/
+    }
 
     public static Painting mapJson(JSONObject painting) {
         JSONObject jsonAuthor = (JSONObject) painting.get(AUTHOR);

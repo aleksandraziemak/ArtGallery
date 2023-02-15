@@ -16,15 +16,15 @@ public class Author {
         this.country = country;
     }
 
-    public void setFirstName() {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName() {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public void setCountry() {
+    public void setCountry(String country) {
         this.country = country;
     }
 

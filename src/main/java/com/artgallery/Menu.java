@@ -39,6 +39,7 @@ public class Menu {
                 break;
             case 3:
                 System.out.println("Buy Painting");
+                artService.buyPainting();
                 break;
             case 4:
                 System.out.println("Sell Painting");

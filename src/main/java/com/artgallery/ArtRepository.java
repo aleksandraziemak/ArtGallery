@@ -8,10 +8,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ArtRepository {
@@ -31,5 +33,21 @@ public class ArtRepository {
         return paintings.stream()
                 .sorted(Comparator.comparing(Painting::getYear))
                 .collect(Collectors.toList());
+    }
+
+    public void addPainting(Painting painting) {
+        List <Painting> paintings = getPaintings();
+        paintings.add(painting);
+        JSONArray jsonPainting = ArtMapper.mapPaintings(paintings);
+        writeToFile(jsonPainting);
+    }
+
+    private void writeToFile(JSONArray jsonPaintings) {
+        try (FileWriter file = new FileWriter(PATH_TO_JSON_FILE)) {
+            file.write(jsonPaintings.toJSONString());
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

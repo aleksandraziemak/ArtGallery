@@ -21,19 +21,19 @@ public class Painting {
         this.id = id;
     }
 
-    public void setTitle() {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setYear() {
+    public void setYear(long year) {
         this.year = year;
     }
 
-    public void setMovement() {
+    public void setMovement(String movement) {
         this.movement = movement;
     }
 
-    public void setAuthor() {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
