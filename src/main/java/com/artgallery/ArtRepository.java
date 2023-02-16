@@ -39,55 +39,9 @@ public class ArtRepository {
         writeToFile(jsonPainting);
     }
 
-    public void editFirstName(Painting painting) {
+    public void updatePainting(Painting painting) {
         List<Painting> paintings = getPaintings();
         paintings.remove(painting);
-        painting.getAuthor().setFirstName(scanner.nextLine());
-        paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
-    }
-
-    public void editLastName(Painting painting) {
-        List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
-        painting.getAuthor().setLastName(scanner.nextLine());
-        paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
-    }
-
-    public void editCountry(Painting painting) {
-        List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
-        painting.getAuthor().setCountry(scanner.nextLine());
-        paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
-    }
-
-    public void editTitle(Painting painting) {
-        List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
-        painting.setTitle(scanner.nextLine());
-        paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
-    }
-
-    public void editYear(Painting painting) {
-        List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
-        painting.setYear(scanner.nextLong());
-        paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
-    }
-
-    public void editMovement(Painting painting) {
-        List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
-        painting.setMovement(scanner.nextLine());
         paintings.add(painting);
         JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
         writeToFile(jsonArray);
