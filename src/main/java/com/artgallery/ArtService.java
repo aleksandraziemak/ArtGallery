@@ -11,8 +11,8 @@ import java.util.stream.IntStream;
 
 public class ArtService {
 
-    private static final ArtRepository repository = new ArtRepository();
-    Scanner scanner = new Scanner(System.in);
+    private final ArtRepository repository = new ArtRepositoryJson();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void showMyCollection() {
         List<Painting> paintings = repository.getPaintings();
