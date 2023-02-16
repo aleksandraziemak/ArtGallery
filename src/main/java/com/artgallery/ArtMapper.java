@@ -1,6 +1,7 @@
 package com.artgallery;
 
 import com.artgallery.model.Author;
+import com.artgallery.model.Movement;
 import com.artgallery.model.Painting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -31,7 +32,7 @@ public class ArtMapper {
         JSONObject newPainting = new JSONObject();
         newPainting.put(TITLE, painting.getTitle());
         newPainting.put(YEAR, painting.getYear());
-        newPainting.put(MOVEMENT, painting.getMovement());
+        newPainting.put(MOVEMENT, painting.getMovement().name());
         newPainting.put(ID, painting.getId().toString());
         JSONObject newAuthor = new JSONObject();
         newAuthor.put(FIRST_NAME, painting.getAuthor().getFirstName());
@@ -44,6 +45,6 @@ public class ArtMapper {
     public static Painting mapJson(JSONObject painting) {
         JSONObject jsonAuthor = (JSONObject) painting.get(AUTHOR);
         Author author = new Author((String) jsonAuthor.get(FIRST_NAME), (String) jsonAuthor.get(LAST_NAME), (String) jsonAuthor.get(COUNTRY));
-        return new Painting((String) painting.get(TITLE), (String) painting.get(MOVEMENT), (long) painting.get(YEAR), author, UUID.fromString((String) painting.get(ID)));
+        return new Painting((String) painting.get(TITLE), Movement.valueOf((String) painting.get(MOVEMENT)), (long) painting.get(YEAR), author, UUID.fromString((String) painting.get(ID)));
     }
 }

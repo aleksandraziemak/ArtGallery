@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Painting {
     private String title;
     private long year;
-    private String movement;
+    private Movement movement;
     private Author author;
     private UUID id;
 
@@ -14,7 +14,7 @@ public class Painting {
         this.id = id;
     }
 
-    public Painting(String title, String movement, long year, Author author, UUID id) {
+    public Painting(String title, Movement movement, long year, Author author, UUID id) {
         this.title = title;
         this.year = year;
         this.movement = movement;
@@ -30,7 +30,7 @@ public class Painting {
         this.year = year;
     }
 
-    public void setMovement(String movement) {
+    public void setMovement(Movement movement) {
         this.movement = movement;
     }
 
@@ -46,7 +46,7 @@ public class Painting {
         return this.year;
     }
 
-    public String getMovement() {
+    public Movement getMovement() {
         return this.movement;
     }
 
