@@ -1,6 +1,7 @@
 package com.artgallery;
 
 import com.artgallery.model.Author;
+import com.artgallery.model.Movement;
 import com.artgallery.model.Painting;
 import com.artgallery.util.ArtServiceUtil;
 import com.artgallery.util.UuidGeneratorUtil;
@@ -54,7 +55,7 @@ public class ArtService {
         System.out.println("Title: ");
         painting.setTitle(scanner.nextLine());
         System.out.println("Movement: ");
-        painting.setMovement(scanner.nextLine());
+        painting.setMovement(Movement.valueOf(scanner.nextLine().toUpperCase()));
         System.out.println("Year: ");
         painting.setYear(scanner.nextLong());
         painting.setAuthor(author);
@@ -152,7 +153,7 @@ public class ArtService {
                 break;
             case "m":
                 System.out.println("Current movement: " + painting.getMovement() + "\n" + "New input:");
-                painting.setMovement(scanner.nextLine());
+                painting.setMovement(Movement.valueOf(scanner.nextLine().toUpperCase()));
                 break;
             default:
                 System.out.println("Wrong input.");
