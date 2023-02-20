@@ -1,5 +1,16 @@
 [
   {
+    "year": 1489,
+    "author": {
+      "firstName": "Leonardo",
+      "lastName": "Da Vinci",
+      "country": "Italy"
+    },
+    "id": "1d0252a9-96e4-4d76-9afa-884165be9ee9",
+    "title": "Lady with an Ermine",
+    "movement": "RENAISSANCE"
+  },
+  {
     "year": 1506,
     "author": {
       "firstName": "Leonardo",
@@ -33,17 +44,6 @@
     "movement": "HISTORISM"
   },
   {
-    "year": 1899,
-    "author": {
-      "firstName": "Claude",
-      "lastName": "Monet",
-      "country": "France"
-    },
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
-    "title": "Waterlilies",
-    "movement": "IMPRESSIONISM"
-  },
-  {
     "year": 1962,
     "author": {
       "firstName": "Andy",
@@ -55,14 +55,14 @@
     "movement": "POPART"
   },
   {
-    "year": 1489,
+    "year": 1899,
     "author": {
-      "firstName": "Leonardo",
-      "lastName": "Da Vinci",
-      "country": "Italy"
+      "firstName": "Claude",
+      "lastName": "Monet",
+      "country": "France"
     },
-    "id": "1d0252a9-96e4-4d76-9afa-884165be9ee9",
-    "title": "Lady with an Ermine",
-    "movement": "RENAISSANCE"
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
+    "title": "Waterlilies",
+    "movement": "IMPRESSIONISM"
   }
 ]
