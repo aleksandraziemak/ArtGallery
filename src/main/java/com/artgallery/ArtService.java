@@ -3,8 +3,8 @@ package com.artgallery;
 import com.artgallery.model.Author;
 import com.artgallery.model.Movement;
 import com.artgallery.model.Painting;
-import com.artgallery.util.ArtServiceUtil;
-import com.artgallery.util.UuidGeneratorUtil;
+import com.artgallery.util.*;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -18,26 +18,26 @@ public class ArtService {
     public void showMyCollection() {
         List<Painting> paintings = repository.getPaintings();
         IntStream.range(0, paintings.size())
-            .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getFullDescription()));
+                .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getFullDescription()));
     }
 
     public void showMyCollection(List<Painting> paintings) {
         IntStream.range(0, paintings.size())
-            .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getFullDescription()));
+                .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getFullDescription()));
     }
 
     private void showMyCollectionShort(List<Painting> paintings) {
         IntStream.range(0, paintings.size())
-            .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getShortDesctription()));
+                .forEach(index -> System.out.println((index + 1) + ". " + paintings.get(index).getShortDesctription()));
     }
 
     public void showMyArtists() {
         List<Author> authors = repository.getPaintings().stream()
-            .map(Painting::getAuthor)
-            .distinct()
-            .toList();
+                .map(Painting::getAuthor)
+                .distinct()
+                .toList();
         IntStream.range(0, authors.size())
-            .forEach(index -> System.out.println((index + 1) + ". " + authors.get(index).getDescription()));
+                .forEach(index -> System.out.println((index + 1) + ". " + authors.get(index).getDescription()));
     }
 
     public void buyPainting() {
@@ -67,11 +67,9 @@ public class ArtService {
         List<Painting> paintings = repository.getPaintings();
         showMyCollection(paintings);
         System.out.println("Choose Painting to edit: ");
-        int index;
         while (true) {
             try {
-                index = ArtServiceUtil.getIndex(scanner, paintings);
-                Painting painting = paintings.get(index);
+                Painting painting = ArtServiceUtil.getPainting(scanner, paintings);
                 edit(painting);
                 break;
             } catch (InputMismatchException | IndexOutOfBoundsException exception) {
@@ -83,41 +81,41 @@ public class ArtService {
 
     private void edit(Painting painting) {
         System.out.println("Do you want to change data: " + "\n" + painting.getAuthor().getDescription() + "? [y]es / [n]o");
-        String option = ArtServiceUtil.getOption(scanner);
+        InputType option = ArtServiceUtil.getOption(scanner, InputValidator.YES_NO);
         Author editedAuthor = editAuthor(painting.getAuthor(), option);
         painting.setAuthor(editedAuthor);
 
         System.out.println("Do you want to change data: " + "\n" + painting.getDescription() + "? [y]es / [n]o");
-        option = ArtServiceUtil.getOption(scanner);
+        option = ArtServiceUtil.getOption(scanner, InputValidator.YES_NO);
         Painting editedPainting = editPainting(painting, option);
 
         repository.updatePainting(editedPainting);
     }
 
-    private Author editAuthor(Author author, String option) {
+    private Author editAuthor(Author author, InputType option) {
         switch (option) {
-            case "y":
+            case YES:
                 System.out.println("What do you want to edit? [f]irst name / [l]ast name / [c]ountry");
-                String authorOption = ArtServiceUtil.getOptionAuthor(scanner);
+                InputType authorOption = ArtServiceUtil.getOption(scanner, InputValidator.AUTHOR);
                 return edit(author, authorOption);
-            case "n":
+            case NO:
                 System.out.println("Artist data:" + "\n" + author.getDescription());
                 return author;
         }
         return author;
     }
 
-    private Author edit(Author author, String authorOption) {
+    private Author edit(Author author, InputType authorOption) {
         switch (authorOption) {
-            case "f":
+            case FIRST_NAME:
                 System.out.println("Current first name: " + author.getFirstName() + "\n" + "New input:");
                 author.setFirstName(scanner.nextLine());
                 break;
-            case "l":
+            case LAST_NAME:
                 System.out.println("Current last name: " + author.getLastName() + "\n" + "New input:");
                 author.setLastName(scanner.nextLine());
                 break;
-            case "c":
+            case COUNTRY:
                 System.out.println("Current last country: " + author.getCountry() + "\n" + "New input:");
                 author.setCountry(scanner.nextLine());
                 break;
@@ -128,30 +126,30 @@ public class ArtService {
         return author;
     }
 
-    private Painting editPainting(Painting painting, String option) {
+    private Painting editPainting(Painting painting, InputType option) {
         switch (option) {
-            case "y":
-                System.out.println("What do you want to edit? [t]itle / [y]ear / [m]ovement");
-                String paintingOption = ArtServiceUtil.getOptionPainting(scanner);
+            case YES:
+                System.out.println("What do you want to edit? [t]itle / [x]year / [m]ovement");
+                InputType paintingOption = ArtServiceUtil.getOption(scanner, InputValidator.PAINTING);
                 return edit(painting, paintingOption);
-            case "n":
+            case NO:
                 System.out.println("Painting data:" + "\n" + painting.getDescription());
                 return painting;
         }
         return painting;
     }
 
-    private Painting edit(Painting painting, String paintingOption) {
+    private Painting edit(Painting painting, InputType paintingOption) {
         switch (paintingOption) {
-            case "t":
+            case TITLE:
                 System.out.println("Current title: " + painting.getTitle() + "\n" + "New input:");
                 painting.setTitle(scanner.nextLine());
                 break;
-            case "y":
+            case YEAR:
                 System.out.println("Current year: " + painting.getYear() + "\n" + "New input:");
                 painting.setYear(scanner.nextLong());
                 break;
-            case "m":
+            case MOVEMENT:
                 System.out.println("Current movement: " + painting.getMovement() + "\n" + "New input:");
                 painting.setMovement(Movement.valueOf(scanner.nextLine().toUpperCase()));
                 break;
@@ -167,11 +165,9 @@ public class ArtService {
         List<Painting> paintings = repository.getPaintings();
         showMyCollectionShort(paintings);
         System.out.println("Choose painting to sell: ");
-        int index;
         while (true) {
             try {
-                index = ArtServiceUtil.getIndex(scanner, paintings);
-                Painting painting = paintings.get(index);
+                Painting painting = ArtServiceUtil.getPainting(scanner, paintings);
                 repository.sellPainting(painting);
                 break;
             } catch (InputMismatchException | IndexOutOfBoundsException exception) {
