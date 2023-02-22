@@ -4,20 +4,26 @@ import java.util.Objects;
 
 public class Author {
     private String firstName;
+    private String secondName;
     private String lastName;
     private String country;
 
     public Author() {
     }
 
-    public Author (String firstName, String lastName, String country) {
+    public Author(String firstName, String secondName, String lastName, String country) {
         this.firstName = firstName;
+        this.secondName = secondName;
         this.lastName = lastName;
         this.country = country;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public void setLastName(String lastName) {
@@ -32,8 +38,12 @@ public class Author {
         return this.firstName;
     }
 
+    public String getSecondName() {
+        return this.secondName;
+    }
+
     public String getLastName() {
-        return  this.lastName;
+        return this.lastName;
     }
 
     public String getCountry() {
@@ -41,7 +51,11 @@ public class Author {
     }
 
     public String getDescription() {
-        return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
+        if (secondName == null) {
+            return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
+        } else {
+            return String.format("Author: %s %s %s, Country: %s", firstName, secondName, lastName, country);
+        }
     }
 
     @Override

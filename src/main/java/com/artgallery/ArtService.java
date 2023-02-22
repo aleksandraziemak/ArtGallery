@@ -7,7 +7,9 @@ import com.artgallery.util.*;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ArtService {
@@ -40,6 +42,51 @@ public class ArtService {
                 .forEach(index -> System.out.println((index + 1) + ". " + authors.get(index).getDescription()));
     }
 
+    private void showPaintings(List<Painting> searchedPaintings) {
+        if (searchedPaintings.isEmpty()) {
+            System.out.println("No paintings found");
+        } else {
+            IntStream.range(0, searchedPaintings.size())
+                    .forEach(index -> System.out.println((index + 1) + ". " + searchedPaintings.get(index).getShortDesctription()));
+        }
+    }
+
+    public void searchPainting() {
+        List<Painting> paintings = repository.getPaintings();
+        System.out.println("Searching Painting...");
+        System.out.println("Search by: [l]ast name / [t]itle of painting");
+        InputType input = ArtServiceUtil.getOption(scanner, InputValidator.SEARCH);
+        System.out.println("Search for:");
+        String search = scanner.next().toLowerCase();
+        List<Painting> searchedPaintings = searchPainting(paintings, input, search);
+        showPaintings(searchedPaintings);
+    }
+
+    private List<Painting> searchPainting(List<Painting> paintings, InputType input, String search) {
+        List <Painting> searchedPaintings;
+        switch (input) {
+            case LAST_NAME:
+                searchedPaintings = searchByAuthor(paintings, search);
+                return searchedPaintings;
+            case TITLE:
+                searchedPaintings = searchByPainting(paintings, search);
+                return searchedPaintings;
+        }
+        return null;
+    }
+
+    private List<Painting> searchByAuthor(List<Painting> paintings, String search) {
+        return paintings.stream()
+                .filter(painting -> painting.getAuthor().getLastName().toLowerCase().contains(search))
+                .collect(Collectors.toList());
+    }
+
+    private List<Painting> searchByPainting(List<Painting> paintings, String search) {
+        return paintings.stream()
+                .filter(painting -> painting.getTitle().toLowerCase().contains(search))
+                .collect(Collectors.toList());
+    }
+
     public void buyPainting() {
         Painting painting = new Painting(UuidGeneratorUtil.uuidGenerate());
         Author author = new Author();
@@ -47,6 +94,8 @@ public class ArtService {
         System.out.println("Set author data");
         System.out.println("Firstname: ");
         author.setFirstName(scanner.nextLine());
+        System.out.println("(optional) Second name: ");
+        author.setSecondName(scanner.nextLine());
         System.out.println("Lastname: ");
         author.setLastName(scanner.nextLine());
         System.out.println("Country: ");
@@ -95,7 +144,7 @@ public class ArtService {
     private Author editAuthor(Author author, InputType option) {
         switch (option) {
             case YES:
-                System.out.println("What do you want to edit? [f]irst name / [l]ast name / [c]ountry");
+                System.out.println("What do you want to edit? [f]irst name / [s]econd name / [l]ast name / [c]ountry");
                 InputType authorOption = ArtServiceUtil.getOption(scanner, InputValidator.AUTHOR);
                 return edit(author, authorOption);
             case NO:
@@ -110,6 +159,10 @@ public class ArtService {
             case FIRST_NAME:
                 System.out.println("Current first name: " + author.getFirstName() + "\n" + "New input:");
                 author.setFirstName(scanner.nextLine());
+                break;
+            case SECOND_NAME:
+                System.out.println("Current second name: " + author.getSecondName() + "\n" + "New input:");
+                author.setSecondName(scanner.nextLine());
                 break;
             case LAST_NAME:
                 System.out.println("Current last name: " + author.getLastName() + "\n" + "New input:");

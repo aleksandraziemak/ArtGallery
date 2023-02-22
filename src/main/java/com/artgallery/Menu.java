@@ -23,7 +23,8 @@ public class Menu {
         System.out.println("3. Edit Art collection");
         System.out.println("4. Buy Painting");
         System.out.println("5. Sell Painting");
-        System.out.println("6. Bank balance");
+        System.out.println("6. Search Painting");
+        System.out.println("7. Bank balance");
         System.out.println("0. Exit");
         System.out.println("Choose option:");
     }
@@ -31,11 +32,11 @@ public class Menu {
     private static void manageOptions(int option) {
         switch (option) {
             case 1:
-                System.out.println("Your Art collection");
+                System.out.println("Your Art collection:");
                 artService.showMyCollection();
                 break;
             case 2:
-                System.out.println("Your Artists");
+                System.out.println("Your Artists:");
                 artService.showMyArtists();
                 break;
             case 3:
@@ -48,6 +49,9 @@ public class Menu {
                 artService.sellPainting();
                 break;
             case 6:
+                artService.searchPainting();
+                break;
+            case 7:
                 System.out.println("Your Bank balance");
                 break;
             case 0:

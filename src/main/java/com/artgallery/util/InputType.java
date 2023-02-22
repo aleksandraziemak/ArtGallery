@@ -6,7 +6,9 @@ public enum InputType {
     TITLE,
     MOVEMENT,
     YEAR,
+    AUTHOR,
     FIRST_NAME,
+    SECOND_NAME,
     LAST_NAME,
     COUNTRY
 }
