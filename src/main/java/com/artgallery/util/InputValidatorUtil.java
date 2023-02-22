@@ -12,6 +12,7 @@ public class InputValidatorUtil {
             case YES_NO -> yesNoValidate(input);
             case AUTHOR -> authorValidate(input);
             case PAINTING -> paintingValidate(input);
+            case SEARCH -> searchValidate(input);
         };
     }
 
@@ -24,7 +25,7 @@ public class InputValidatorUtil {
     }
 
     public static boolean yesNoValidate(String input) {
-        boolean inputInvalid = !input.matches("[y]") && !input.matches("[n]");
+        boolean inputInvalid = !input.matches("[yn]");
         if (inputInvalid) {
             System.out.println("Wrong input, choose: [y]es / [n]o");
         }
@@ -32,7 +33,7 @@ public class InputValidatorUtil {
     }
 
     public static boolean paintingValidate(String input) {
-        boolean inputInvalid = !input.matches("[t]") && !input.matches("[x]") && !input.matches("[m]");
+        boolean inputInvalid = !input.matches("[txm]");
         if (inputInvalid) {
             System.out.println("Wrong input, choose: [t]itle / [x]year / [m]ovement");
         }
@@ -40,9 +41,17 @@ public class InputValidatorUtil {
     }
 
     public static boolean authorValidate(String input) {
-        boolean inputInvalid = !input.matches("[f]") && !input.matches("[l]") && !input.matches("[c]");
+        boolean inputInvalid = !input.matches("[fslc]");
         if (inputInvalid) {
-            System.out.println("Wrong input, choose: [f]irst name / [l]ast name / [c]ountry");
+            System.out.println("Wrong input, choose: [f]irst name / [s]econd name / [l]ast name / [c]ountry");
+        }
+        return inputInvalid;
+    }
+
+    public static boolean searchValidate(String input) {
+        boolean inputInvalid = !input.matches("[lt]");
+        if (inputInvalid) {
+            System.out.println("Wrong input, choose: [l]ast name of an author / [t]itle of a painting");
         }
         return inputInvalid;
     }

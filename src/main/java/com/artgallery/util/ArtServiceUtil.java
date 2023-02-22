@@ -28,8 +28,12 @@ public class ArtServiceUtil {
                 return InputType.MOVEMENT;
             case "x":
                 return InputType.YEAR;
+            case "a":
+                return InputType.AUTHOR;
             case "f":
                 return InputType.FIRST_NAME;
+            case "s":
+                return InputType.SECOND_NAME;
             case "l":
                 return InputType.LAST_NAME;
             case "c":

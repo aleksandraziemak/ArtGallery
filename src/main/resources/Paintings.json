@@ -4,7 +4,8 @@
     "author": {
       "firstName": "Leonardo",
       "lastName": "Da Vinci",
-      "country": "Italy"
+      "country": "Italy",
+      "secondName": null
     },
     "id": "1d0252a9-96e4-4d76-9afa-884165be9ee9",
     "title": "Lady with an Ermine",
@@ -15,7 +16,8 @@
     "author": {
       "firstName": "Leonardo",
       "lastName": "Da Vinci",
-      "country": "Italy"
+      "country": "Italy",
+      "secondName": null
     },
     "id": "6cac84e0-9dae-4626-a1b1-113d600507de",
     "title": "Mona Lisa",
@@ -26,7 +28,8 @@
     "author": {
       "firstName": "Claude",
       "lastName": "Monet",
-      "country": "France"
+      "country": "France",
+      "secondName": null
     },
     "id": "6cac84e0-9dae-4626-a1b1-113d600507ca",
     "title": "Impression, Sunrise",
@@ -37,32 +40,35 @@
     "author": {
       "firstName": "Jan",
       "lastName": "Matejko",
-      "country": "Poland"
+      "country": "Poland",
+      "secondName": "Alojzy"
     },
     "id": "26d6b341-7500-4de4-b46e-486571fbf66f",
     "title": "Battle of Grunwald",
     "movement": "HISTORISM"
   },
   {
-    "year": 1962,
-    "author": {
-      "firstName": "Andy",
-      "lastName": "Worhol",
-      "country": "USA"
-    },
-    "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
-    "title": "Marilyn Diptych",
-    "movement": "POPART"
-  },
-  {
     "year": 1899,
     "author": {
       "firstName": "Claude",
       "lastName": "Monet",
-      "country": "France"
+      "country": "France",
+      "secondName": null
     },
     "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
     "title": "Waterlilies",
     "movement": "IMPRESSIONISM"
+  },
+  {
+    "year": 1962,
+    "author": {
+      "firstName": "Andy",
+      "lastName": "Worhol",
+      "country": "USA",
+      "secondName": null
+    },
+    "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
+    "title": "Marilyn Diptych",
+    "movement": "POPART"
   }
 ]
