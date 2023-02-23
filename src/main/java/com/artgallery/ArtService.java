@@ -5,6 +5,7 @@ import com.artgallery.model.Movement;
 import com.artgallery.model.Painting;
 import com.artgallery.util.*;
 
+import java.lang.constant.Constable;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
@@ -158,11 +159,12 @@ public class ArtService {
         switch (authorOption) {
             case FIRST_NAME:
                 System.out.println("Current first name: " + author.getFirstName() + "\n" + "New input:");
-                author.setFirstName(scanner.nextLine());
+                author.setFirstName(scanner.next());
                 break;
             case SECOND_NAME:
-                System.out.println("Current second name: " + author.getSecondName() + "\n" + "New input:");
-                author.setSecondName(scanner.nextLine());
+                System.out.println("Current second name: " + author.getSecondName().orElse("-") + "\n" + "New input:");
+                String secondName = scanner.next();
+                author.setSecondName(calculateEmptyValue(secondName));
                 break;
             case LAST_NAME:
                 System.out.println("Current last name: " + author.getLastName() + "\n" + "New input:");
@@ -177,6 +179,14 @@ public class ArtService {
                 break;
         }
         return author;
+    }
+
+    private String calculateEmptyValue(String text) {
+        if (Objects.equals(text, "-")) {
+            return null;
+        } else {
+            return text;
+        }
     }
 
     private Painting editPainting(Painting painting, InputType option) {

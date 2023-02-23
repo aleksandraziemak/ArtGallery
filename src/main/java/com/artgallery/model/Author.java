@@ -1,6 +1,7 @@
 package com.artgallery.model;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Author {
     private String firstName;
@@ -38,8 +39,8 @@ public class Author {
         return this.firstName;
     }
 
-    public String getSecondName() {
-        return this.secondName;
+    public Optional<String> getSecondName() {
+        return Optional.ofNullable(secondName);
     }
 
     public String getLastName() {
@@ -51,11 +52,14 @@ public class Author {
     }
 
     public String getDescription() {
-        if (secondName == null) {
+        return getSecondName()
+                .map(sn -> String.format("Author: %s %s %s, Country: %s", firstName, sn, lastName, country))
+                .orElse(String.format("Author: %s %s, Country: %s", firstName, lastName, country));
+/*        if (secondName == null) {
             return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
         } else {
             return String.format("Author: %s %s %s, Country: %s", firstName, secondName, lastName, country);
-        }
+        }*/
     }
 
     @Override

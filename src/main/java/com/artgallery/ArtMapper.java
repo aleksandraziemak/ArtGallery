@@ -37,7 +37,7 @@ public class ArtMapper {
         newPainting.put(ID, painting.getId().toString());
         JSONObject newAuthor = new JSONObject();
         newAuthor.put(FIRST_NAME, painting.getAuthor().getFirstName());
-        newAuthor.put(SECOND_NAME, painting.getAuthor().getSecondName());
+        newAuthor.put(SECOND_NAME, painting.getAuthor().getSecondName().orElse(null));
         newAuthor.put(LAST_NAME, painting.getAuthor().getLastName());
         newAuthor.put(COUNTRY, painting.getAuthor().getCountry());
         newPainting.put(AUTHOR, newAuthor);
