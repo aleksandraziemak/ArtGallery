@@ -10,4 +10,9 @@ targetCompatibility = 17
 
 dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
 }
