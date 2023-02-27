@@ -12,7 +12,7 @@ public class ArtServiceUtil {
         String input;
         do {
             input = scanner.next();
-        } while (InputValidatorUtil.validate(input, validator));
+        } while (!InputValidatorUtil.isValid(input, validator));
         return mapInputType(input);
     }
 
@@ -46,7 +46,7 @@ public class ArtServiceUtil {
         String input;
         do {
             input = scanner.nextLine();
-        } while (InputValidatorUtil.isInputInvalid(input, paintings));
+        } while (!InputValidatorUtil.isInputValid(input, paintings));
         return paintings.get(Integer.parseInt(input) - 1);
     }
 }
