@@ -1,8 +1,9 @@
 package com.artgallery;
 
-import com.artgallery.model.Author;
-import com.artgallery.model.Movement;
-import com.artgallery.model.Painting;
+import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Movement;
+import com.artgallery.domain.model.Painting;
+import com.artgallery.infrastructure.ArtMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Assertions;

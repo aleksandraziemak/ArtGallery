@@ -1,4 +1,4 @@
-package com.artgallery.model;
+package com.artgallery.domain.model;
 
 public enum Movement {
     IMPRESSIONISM,

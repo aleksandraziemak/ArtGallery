@@ -1,6 +1,6 @@
-package com.artgallery;
+package com.artgallery.domain;
 
-import com.artgallery.model.Painting;
+import com.artgallery.domain.model.Painting;
 
 import java.util.List;
 
