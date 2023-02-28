@@ -6,17 +6,17 @@ import com.artgallery.domain.util.UuidGeneratorUtil;
 
 import java.util.List;
 
-public class PaintingsMapperDto {
+public class PaintingMapperDto {
 
     public static List<PaintingDto> paintingsDto(List<Painting> paintings) {
         return paintings.stream()
-                .map(PaintingsMapperDto::mapDto)
+                .map(PaintingMapperDto::mapPainting)
                 .toList();
     }
 
-    private static PaintingDto mapDto(Painting painting) {
+    private static PaintingDto mapPainting(Painting painting) {
         PaintingDto paintingDto = new PaintingDto();
-        paintingDto.setAuthor(AuthorMapperDto.mapDto(painting.getAuthor()));
+        paintingDto.setAuthor(AuthorMapperDto.mapAuthors(painting.getAuthor()));
         paintingDto.setTitle(painting.getTitle());
         paintingDto.setYear(painting.getYear());
         paintingDto.setMovement(MovementDto.valueOf(painting.getMovement().name()));
