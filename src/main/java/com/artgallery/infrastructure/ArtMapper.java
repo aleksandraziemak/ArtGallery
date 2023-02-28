@@ -1,8 +1,8 @@
-package com.artgallery;
+package com.artgallery.infrastructure;
 
-import com.artgallery.model.Author;
-import com.artgallery.model.Movement;
-import com.artgallery.model.Painting;
+import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Movement;
+import com.artgallery.domain.model.Painting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

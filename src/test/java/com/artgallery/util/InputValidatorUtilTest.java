@@ -1,6 +1,7 @@
 package com.artgallery.util;
 
-import com.artgallery.model.Painting;
+import com.artgallery.domain.model.Painting;
+import com.artgallery.domain.util.InputValidatorUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

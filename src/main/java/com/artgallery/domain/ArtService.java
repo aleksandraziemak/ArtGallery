@@ -1,11 +1,14 @@
-package com.artgallery;
+package com.artgallery.domain;
 
-import com.artgallery.model.Author;
-import com.artgallery.model.Movement;
-import com.artgallery.model.Painting;
-import com.artgallery.util.*;
+import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Movement;
+import com.artgallery.domain.model.Painting;
+import com.artgallery.domain.util.ArtServiceUtil;
+import com.artgallery.domain.util.InputType;
+import com.artgallery.domain.util.InputValidator;
+import com.artgallery.domain.util.UuidGeneratorUtil;
+import com.artgallery.infrastructure.ArtRepositoryJson;
 
-import java.lang.constant.Constable;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +20,10 @@ public class ArtService {
 
     private final ArtRepository repository = new ArtRepositoryJson();
     private final Scanner scanner = new Scanner(System.in);
+
+    public List<Painting> getPaintings() {
+        return repository.getPaintings();
+    }
 
     public void showMyCollection() {
         List<Painting> paintings = repository.getPaintings();

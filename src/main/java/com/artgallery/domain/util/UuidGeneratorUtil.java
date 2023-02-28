@@ -1,4 +1,4 @@
-package com.artgallery.util;
+package com.artgallery.domain.util;
 
 import java.util.UUID;
 

@@ -1,6 +1,7 @@
-package com.artgallery;
+package com.artgallery.infrastructure;
 
-import com.artgallery.model.Painting;
+import com.artgallery.domain.ArtRepository;
+import com.artgallery.domain.model.Painting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,7 +10,9 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ArtRepositoryJson implements ArtRepository {
