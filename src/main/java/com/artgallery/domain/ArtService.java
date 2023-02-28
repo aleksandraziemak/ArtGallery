@@ -95,27 +95,7 @@ public class ArtService {
                 .collect(Collectors.toList());
     }
 
-    public void buyPainting() {
-        Painting painting = new Painting(UuidGeneratorUtil.uuidGenerate());
-        Author author = new Author();
-        System.out.println("Buying new painting...");
-        System.out.println("Set author data");
-        System.out.println("Firstname: ");
-        author.setFirstName(scanner.nextLine());
-        System.out.println("(optional) Second name: ");
-        author.setSecondName(scanner.nextLine());
-        System.out.println("Lastname: ");
-        author.setLastName(scanner.nextLine());
-        System.out.println("Country: ");
-        author.setCountry(scanner.nextLine());
-        System.out.println("Set painting data");
-        System.out.println("Title: ");
-        painting.setTitle(scanner.nextLine());
-        System.out.println("Movement: ");
-        painting.setMovement(Movement.valueOf(scanner.nextLine().toUpperCase()));
-        System.out.println("Year: ");
-        painting.setYear(scanner.nextLong());
-        painting.setAuthor(author);
+    public void addPainting(Painting painting) {
         repository.addPainting(painting);
     }
 

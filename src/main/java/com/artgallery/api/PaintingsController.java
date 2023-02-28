@@ -2,9 +2,7 @@ package com.artgallery.api;
 
 import com.artgallery.domain.ArtService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +15,12 @@ public class PaintingsController {
     @GetMapping
     ResponseEntity<List<PaintingDto>> getPaintings() {
         return ResponseEntity.ok(PaintingsMapperDto.paintingsDto(artService.getPaintings()));
+    }
+
+    @PostMapping("/add")
+    ResponseEntity<Void> addPainting(@RequestBody AddPaintingDto painting) {
+        artService.addPainting(PaintingsMapperDto.map(painting));
+        return ResponseEntity.ok().build();
     }
 
 /*    private static void printMenu() {
