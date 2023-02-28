@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ArtRepositoryJson implements ArtRepository {
@@ -53,11 +54,18 @@ public class ArtRepositoryJson implements ArtRepository {
     }
 
     @Override
-    public void sellPainting(Painting painting) {
+    public void deletePainting(UUID id) {
         List<Painting> paintings = getPaintings();
-        paintings.remove(painting);
+        paintings.remove(getPainting(id, paintings));
         JSONArray jsonPaintings = ArtMapper.mapPaintings(paintings);
         writeToFile(jsonPaintings);
+    }
+
+    private Painting getPainting(UUID id, List<Painting> paintings) {
+        return paintings.stream()
+                .filter(painting -> painting.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("ID %s not found", id)));
     }
 
     private void writeToFile(JSONArray jsonPaintings) {

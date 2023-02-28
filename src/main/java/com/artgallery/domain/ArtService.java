@@ -6,13 +6,9 @@ import com.artgallery.domain.model.Painting;
 import com.artgallery.domain.util.ArtServiceUtil;
 import com.artgallery.domain.util.InputType;
 import com.artgallery.domain.util.InputValidator;
-import com.artgallery.domain.util.UuidGeneratorUtil;
 import com.artgallery.infrastructure.ArtRepositoryJson;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,6 +19,13 @@ public class ArtService {
 
     public List<Painting> getPaintings() {
         return repository.getPaintings();
+    }
+
+    public List<Author> getAuthors() {
+        return repository.getPaintings().stream()
+                .map(Painting::getAuthor)
+                .distinct()
+                .toList();
     }
 
     public void showMyCollection() {
@@ -71,14 +74,11 @@ public class ArtService {
     }
 
     private List<Painting> searchPainting(List<Painting> paintings, InputType input, String search) {
-        List <Painting> searchedPaintings;
         switch (input) {
             case LAST_NAME:
-                searchedPaintings = searchByAuthor(paintings, search);
-                return searchedPaintings;
+                return searchByAuthor(paintings, search);
             case TITLE:
-                searchedPaintings = searchByPainting(paintings, search);
-                return searchedPaintings;
+                return searchByPainting(paintings, search);
         }
         return null;
     }
@@ -210,21 +210,8 @@ public class ArtService {
         return painting;
     }
 
-    public void sellPainting() {
-        System.out.println("Selling painting...");
-        List<Painting> paintings = repository.getPaintings();
-        showMyCollectionShort(paintings);
-        System.out.println("Choose painting to sell: ");
-        while (true) {
-            try {
-                Painting painting = ArtServiceUtil.getPainting(scanner, paintings);
-                repository.sellPainting(painting);
-                break;
-            } catch (InputMismatchException | IndexOutOfBoundsException exception) {
-                System.out.println("Please choose number between 1 and " + repository.getPaintings().size());
-                scanner.nextLine();
-            }
-        }
+    public void deletePainting(UUID id) {
+        repository.deletePainting(id);
     }
 
 }
