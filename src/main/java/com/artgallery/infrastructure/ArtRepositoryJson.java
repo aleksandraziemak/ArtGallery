@@ -49,8 +49,8 @@ public class ArtRepositoryJson implements ArtRepository {
         List<Painting> paintings = getPaintings();
         paintings.remove(painting);
         paintings.add(painting);
-        JSONArray jsonArray = ArtMapper.mapPaintings(paintings);
-        writeToFile(jsonArray);
+        JSONArray jsonPainting = ArtMapper.mapPaintings(paintings);
+        writeToFile(jsonPainting);
     }
 
     @Override
