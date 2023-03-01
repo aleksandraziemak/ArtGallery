@@ -2,11 +2,11 @@ package com.artgallery.api;
 
 import java.util.UUID;
 
-public class PaintingDto {
+public class EditPaintingDto {
     private String title;
     private long year;
     private MovementDto movement;
-    private AuthorDto author;
+    private EditAuthorDto author;
     private UUID id;
 
     public String getTitle() {
@@ -33,19 +33,19 @@ public class PaintingDto {
         this.movement = movement;
     }
 
-    public AuthorDto getAuthor() {
+    public EditAuthorDto getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthorDto author) {
+    public void setAuthor(EditAuthorDto author) {
         this.author = author;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

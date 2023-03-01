@@ -19,12 +19,22 @@ public class PaintingMapperDto {
         paintingDto.setAuthor(AuthorMapperDto.mapAuthors(painting.getAuthor()));
         paintingDto.setTitle(painting.getTitle());
         paintingDto.setYear(painting.getYear());
+        paintingDto.setId(painting.getId());
         paintingDto.setMovement(MovementDto.valueOf(painting.getMovement().name()));
         return paintingDto;
     }
 
     public static Painting map(AddPaintingDto paintingDto) {
         Painting painting = new Painting(UuidGeneratorUtil.uuidGenerate());
+        painting.setAuthor(AuthorMapperDto.map(paintingDto.getAuthor()));
+        painting.setTitle(paintingDto.getTitle());
+        painting.setYear(paintingDto.getYear());
+        painting.setMovement(Movement.valueOf(paintingDto.getMovement().name()));
+        return painting;
+    }
+
+    public static Painting map(EditPaintingDto paintingDto) {
+        Painting painting = new Painting(paintingDto.getId());
         painting.setAuthor(AuthorMapperDto.map(paintingDto.getAuthor()));
         painting.setTitle(paintingDto.getTitle());
         painting.setYear(paintingDto.getYear());

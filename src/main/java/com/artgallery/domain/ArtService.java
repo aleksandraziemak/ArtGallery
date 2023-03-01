@@ -99,34 +99,12 @@ public class ArtService {
         repository.addPainting(painting);
     }
 
-    public void editPainting() {
-        System.out.println("Editing painting...");
-        List<Painting> paintings = repository.getPaintings();
-        showMyCollection(paintings);
-        System.out.println("Choose Painting to edit: ");
-        while (true) {
-            try {
-                Painting painting = ArtServiceUtil.getPainting(scanner, paintings);
-                edit(painting);
-                break;
-            } catch (InputMismatchException | IndexOutOfBoundsException exception) {
-                System.out.println("Please choose number between 1 and " + repository.getPaintings().size());
-                scanner.nextLine();
-            }
-        }
+    public void editPainting(Painting painting) {
+        repository.updatePainting(painting);
     }
 
     private void edit(Painting painting) {
-        System.out.println("Do you want to change data: " + "\n" + painting.getAuthor().getDescription() + "? [y]es / [n]o");
-        InputType option = ArtServiceUtil.getOption(scanner, InputValidator.YES_NO);
-        Author editedAuthor = editAuthor(painting.getAuthor(), option);
-        painting.setAuthor(editedAuthor);
 
-        System.out.println("Do you want to change data: " + "\n" + painting.getDescription() + "? [y]es / [n]o");
-        option = ArtServiceUtil.getOption(scanner, InputValidator.YES_NO);
-        Painting editedPainting = editPainting(painting, option);
-
-        repository.updatePainting(editedPainting);
     }
 
     private Author editAuthor(Author author, InputType option) {

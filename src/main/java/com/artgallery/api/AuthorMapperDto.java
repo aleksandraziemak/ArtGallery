@@ -29,4 +29,13 @@ public class AuthorMapperDto {
         author.setCountry(authorDto.getCountry());
         return author;
     }
+
+    public static Author map(EditAuthorDto authorDto) {
+        Author author = new Author();
+        author.setFirstName(authorDto.getFirstName());
+        author.setSecondName(authorDto.getSecondName());
+        author.setLastName(authorDto.getLastName());
+        author.setCountry(authorDto.getCountry());
+        return author;
+    }
 }

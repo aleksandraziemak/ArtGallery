@@ -1,6 +1,7 @@
 package com.artgallery.api;
 
 import com.artgallery.domain.ArtService;
+import com.artgallery.domain.model.Painting;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,12 @@ public class PaintingController {
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable UUID id) {
         artService.deletePainting(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/edit")
+    ResponseEntity<Painting> editPainting(@RequestBody EditPaintingDto painting) {
+        artService.editPainting(PaintingMapperDto.map(painting));
         return ResponseEntity.ok().build();
     }
 

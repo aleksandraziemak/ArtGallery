@@ -48,18 +48,6 @@
     "movement": "HISTORISM"
   },
   {
-    "year": 1899,
-    "author": {
-      "firstName": "Claude",
-      "lastName": "Monet",
-      "country": "France",
-      "secondName": null
-    },
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
-    "title": "Waterlilies",
-    "movement": "IMPRESSIONISM"
-  },
-  {
     "year": 1962,
     "author": {
       "firstName": "Andy",
@@ -70,5 +58,17 @@
     "id": "932c0169-f90b-417e-b830-dfba6ce86d33",
     "title": "Marilyn Diptych",
     "movement": "POPART"
+  },
+  {
+    "year": 1899,
+    "author": {
+      "firstName": "Claude",
+      "lastName": "Monet",
+      "country": "France",
+      "secondName": null
+    },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
+    "title": "Waterlilies",
+    "movement": "IMPRESSIONISM"
   }
 ]
