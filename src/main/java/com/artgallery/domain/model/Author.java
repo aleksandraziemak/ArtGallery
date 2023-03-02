@@ -53,19 +53,18 @@ public class Author {
 
     public String getDescription() {
         return getSecondName()
-                .map(sn -> String.format("Author: %s %s %s, Country: %s", firstName, sn, lastName, country))
-                .orElse(String.format("Author: %s %s, Country: %s", firstName, lastName, country));
-/*        if (secondName == null) {
-            return String.format("Author: %s %s, Country: %s", firstName, lastName, country);
-        } else {
-            return String.format("Author: %s %s %s, Country: %s", firstName, secondName, lastName, country);
-        }*/
+            .map(sn -> String.format("Author: %s %s %s, Country: %s", firstName, sn, lastName, country))
+            .orElse(String.format("Author: %s %s, Country: %s", firstName, lastName, country));
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Author author = (Author) o;
         return Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(country, author.country);
     }

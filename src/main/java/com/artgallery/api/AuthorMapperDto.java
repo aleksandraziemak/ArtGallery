@@ -1,18 +1,17 @@
 package com.artgallery.api;
 
 import com.artgallery.domain.model.Author;
-
 import java.util.List;
 
 public class AuthorMapperDto {
 
-    public static List<AuthorDto> authorsDto(List<Author> authors) {
+    public static List<AuthorDto> map(List<Author> authors) {
         return authors.stream()
-                .map(AuthorMapperDto::mapAuthors)
-                .toList();
+            .map(AuthorMapperDto::map)
+            .toList();
     }
 
-    public static AuthorDto mapAuthors(Author author) {
+    public static AuthorDto map(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setFirstName(author.getFirstName());
         authorDto.setSecondName(author.getSecondName().orElse(null));

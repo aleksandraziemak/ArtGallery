@@ -2,11 +2,6 @@ package com.artgallery.infrastructure;
 
 import com.artgallery.domain.ArtRepository;
 import com.artgallery.domain.model.Painting;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +10,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class ArtRepositoryJson implements ArtRepository {
 
@@ -32,8 +31,8 @@ public class ArtRepositoryJson implements ArtRepository {
             e.printStackTrace();
         }
         return paintings.stream()
-                .sorted(Comparator.comparing(Painting::getYear))
-                .collect(Collectors.toList());
+            .sorted(Comparator.comparing(Painting::getYear))
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -63,9 +62,9 @@ public class ArtRepositoryJson implements ArtRepository {
 
     private Painting getPainting(UUID id, List<Painting> paintings) {
         return paintings.stream()
-                .filter(painting -> painting.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("ID %s not found", id)));
+            .filter(painting -> painting.getId().equals(id))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(String.format("ID %s not found", id)));
     }
 
     private void writeToFile(JSONArray jsonPaintings) {

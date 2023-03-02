@@ -3,11 +3,10 @@ package com.artgallery.infrastructure;
 import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.util.List;
 import java.util.UUID;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class ArtMapper {
 
@@ -24,8 +23,8 @@ public class ArtMapper {
     public static JSONArray mapPaintings(List<Painting> paintings) {
         JSONArray jsonPaintings = new JSONArray();
         paintings.stream()
-                .map(ArtMapper::mapPainting)
-                .forEach(jsonPaintings::add);
+            .map(ArtMapper::mapPainting)
+            .forEach(jsonPaintings::add);
         return jsonPaintings;
     }
 
@@ -46,7 +45,18 @@ public class ArtMapper {
 
     public static Painting mapJson(JSONObject painting) {
         JSONObject jsonAuthor = (JSONObject) painting.get(AUTHOR);
-        Author author = new Author((String) jsonAuthor.get(FIRST_NAME),(String) jsonAuthor.get(SECOND_NAME), (String) jsonAuthor.get(LAST_NAME), (String) jsonAuthor.get(COUNTRY));
-        return new Painting((String) painting.get(TITLE), Movement.valueOf((String) painting.get(MOVEMENT)), (long) painting.get(YEAR), author, UUID.fromString((String) painting.get(ID)));
+        Author author = new Author(
+            (String) jsonAuthor.get(FIRST_NAME),
+            (String) jsonAuthor.get(SECOND_NAME),
+            (String) jsonAuthor.get(LAST_NAME),
+            (String) jsonAuthor.get(COUNTRY)
+        );
+        return new Painting(
+            (String) painting.get(TITLE),
+            Movement.valueOf((String) painting.get(MOVEMENT)),
+            (long) painting.get(YEAR),
+            author,
+            UUID.fromString((String) painting.get(ID))
+        );
     }
 }

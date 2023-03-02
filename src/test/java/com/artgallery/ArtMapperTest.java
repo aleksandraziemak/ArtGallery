@@ -4,15 +4,14 @@ import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.infrastructure.ArtMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 class ArtMapperTest {
 
@@ -53,12 +52,12 @@ class ArtMapperTest {
     }
 
     private Painting getPainting() {
-        Painting painting = new Painting(UUID.fromString("236ce69a-11f3-4378-afa5-690ed44e3826"));
         Author author = new Author();
         author.setFirstName("First");
         author.setSecondName(null);
         author.setLastName("Last");
         author.setCountry("Author country");
+        Painting painting = new Painting(UUID.fromString("236ce69a-11f3-4378-afa5-690ed44e3826"));
         painting.setTitle("Painting title");
         painting.setYear(1000);
         painting.setMovement(Movement.valueOf("IMPRESSIONISM"));
