@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/1/authors")
 public class AuthorController {
 
-    private static final ArtService artService = new ArtService();
+    private final ArtService artService;
+
+    public AuthorController(ArtService artService) {
+        this.artService = artService;
+    }
 
     @GetMapping
     ResponseEntity<List<AuthorDto>> getAuthors() {

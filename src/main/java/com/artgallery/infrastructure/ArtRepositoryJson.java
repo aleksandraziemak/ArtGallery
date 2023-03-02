@@ -14,7 +14,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ArtRepositoryJson implements ArtRepository {
 
     private static final String PATH_TO_JSON_FILE = "src/main/resources/Paintings.json";

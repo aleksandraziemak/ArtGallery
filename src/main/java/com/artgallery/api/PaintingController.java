@@ -18,7 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/1/paintings")
 public class PaintingController {
 
-    private static final ArtService artService = new ArtService();
+    private final ArtService artService;
+
+    public PaintingController(ArtService artService) {
+        this.artService = artService;
+    }
 
     @GetMapping
     ResponseEntity<List<PaintingDto>> getPaintings() {

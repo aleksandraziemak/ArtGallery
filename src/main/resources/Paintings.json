@@ -48,6 +48,18 @@
     "movement": "HISTORISM"
   },
   {
+    "year": 1899,
+    "author": {
+      "firstName": "Claude",
+      "lastName": "Monet",
+      "country": "France",
+      "secondName": null
+    },
+    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
+    "title": "Waterlilies",
+    "movement": "IMPRESSIONISM"
+  },
+  {
     "year": 1962,
     "author": {
       "firstName": "Andy",
@@ -60,15 +72,15 @@
     "movement": "POPART"
   },
   {
-    "year": 1899,
+    "year": 2000,
     "author": {
-      "firstName": "Claude",
-      "lastName": "Monet",
-      "country": "France",
+      "firstName": "John",
+      "lastName": "Sock",
+      "country": "Nevermore",
       "secondName": null
     },
-    "id": "6cac84e0-9dae-4626-a1b1-113d600507ba",
-    "title": "Waterlilies",
-    "movement": "IMPRESSIONISM"
+    "id": "69d1d92b-cb30-415b-b99f-995fd4fec70e",
+    "title": "Sad painting",
+    "movement": "HISTORISM"
   }
 ]

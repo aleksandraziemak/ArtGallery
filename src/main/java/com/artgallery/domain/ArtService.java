@@ -2,13 +2,18 @@ package com.artgallery.domain;
 
 import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.Painting;
-import com.artgallery.infrastructure.ArtRepositoryJson;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ArtService {
 
-    private final ArtRepository repository = new ArtRepositoryJson();
+    private final ArtRepository repository;
+
+    public ArtService(ArtRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Painting> getPaintings() {
         return repository.getPaintings();
