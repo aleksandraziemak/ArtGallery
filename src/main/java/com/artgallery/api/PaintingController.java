@@ -2,11 +2,17 @@ package com.artgallery.api;
 
 import com.artgallery.domain.ArtService;
 import com.artgallery.domain.model.Painting;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/1/paintings")
@@ -16,7 +22,7 @@ public class PaintingController {
 
     @GetMapping
     ResponseEntity<List<PaintingDto>> getPaintings() {
-        return ResponseEntity.ok(PaintingMapperDto.paintingsDto(artService.getPaintings()));
+        return ResponseEntity.ok(PaintingMapperDto.map(artService.getPaintings()));
     }
 
     @PostMapping("/add")
@@ -36,17 +42,4 @@ public class PaintingController {
         artService.editPainting(PaintingMapperDto.map(painting));
         return ResponseEntity.ok().build();
     }
-
-/*    private static void printMenu() {
-        System.out.println("Art Gallery");
-        System.out.println("1. Show Art collection");
-        System.out.println("2. Show Artists");
-        System.out.println("3. Edit Art collection");
-        System.out.println("4. Buy Painting");
-        System.out.println("5. Sell Painting");
-        System.out.println("6. Search Painting");
-        System.out.println("7. Bank balance");
-        System.out.println("0. Exit");
-        System.out.println("Choose option:");
-    }*/
 }

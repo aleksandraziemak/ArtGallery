@@ -3,20 +3,19 @@ package com.artgallery.api;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.domain.util.UuidGeneratorUtil;
-
 import java.util.List;
 
 public class PaintingMapperDto {
 
-    public static List<PaintingDto> paintingsDto(List<Painting> paintings) {
+    public static List<PaintingDto> map(List<Painting> paintings) {
         return paintings.stream()
-                .map(PaintingMapperDto::mapPainting)
-                .toList();
+            .map(PaintingMapperDto::map)
+            .toList();
     }
 
-    private static PaintingDto mapPainting(Painting painting) {
+    private static PaintingDto map(Painting painting) {
         PaintingDto paintingDto = new PaintingDto();
-        paintingDto.setAuthor(AuthorMapperDto.mapAuthors(painting.getAuthor()));
+        paintingDto.setAuthor(AuthorMapperDto.map(painting.getAuthor()));
         paintingDto.setTitle(painting.getTitle());
         paintingDto.setYear(painting.getYear());
         paintingDto.setId(painting.getId());
