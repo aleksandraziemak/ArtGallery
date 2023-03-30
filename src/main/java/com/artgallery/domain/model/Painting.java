@@ -1,73 +1,86 @@
 package com.artgallery.domain.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class Painting {
+    private Long id;
     private String title;
-    private long year;
+    private Long year;
     private Movement movement;
     private Author author;
-    private UUID id;
+    private Curator curator;
+    private Status status;
 
-    public Painting(UUID id) {
+    public Painting() {
+    }
+
+    public Painting(Long id) {
         this.id = id;
     }
 
-    public Painting(String title, Movement movement, long year, Author author, UUID id) {
+    public Painting(String title, Movement movement, long year, Author author, Long id, Status status) {
         this.title = title;
         this.year = year;
         this.movement = movement;
+        this.status = status;
         this.author = author;
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setYear(long year) {
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
         this.year = year;
+    }
+
+    public Movement getMovement() {
+        return movement;
     }
 
     public void setMovement(Movement movement) {
         this.movement = movement;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
     public void setAuthor(Author author) {
         this.author = author;
     }
 
-    public String getTitle() {
-        return this.title;
+    public Curator getCurator() {
+        return curator;
     }
 
-    public long getYear() {
-        return this.year;
+    public void setCurator(Curator curator) {
+        this.curator = curator;
     }
 
-    public Movement getMovement() {
-        return this.movement;
+    public Status getStatus() {
+        return status;
     }
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public Author getAuthor() {
-        return this.author;
-    }
-
-    public String getDescription() {
-        return String.format("Title: %s, Year: %s, Movement: %s", title, year, movement);
-    }
-
-    public String getShortDesctription() {
-        return String.format("Title: %s, Author: %s %s", title, author.getFirstName(), author.getLastName());
-    }
-
-    public String getFullDescription() {
-        return getDescription() + "\n" + author.getDescription();
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override

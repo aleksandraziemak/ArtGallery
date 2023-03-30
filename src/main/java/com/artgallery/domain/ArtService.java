@@ -1,9 +1,10 @@
 package com.artgallery.domain;
 
 import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Painting;
+import com.artgallery.infrastructure.ArtRepositoryDatabase;
 import java.util.List;
-import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,7 +12,7 @@ public class ArtService {
 
     private final ArtRepository repository;
 
-    public ArtService(ArtRepository repository) {
+    public ArtService(ArtRepositoryDatabase repository) {
         this.repository = repository;
     }
 
@@ -20,22 +21,30 @@ public class ArtService {
     }
 
     public List<Author> getAuthors() {
-        return repository.getPaintings().stream()
-            .map(Painting::getAuthor)
-            .distinct()
-            .toList();
+        return repository.getAuthors();
+    }
+
+    public List<Curator> getCurators() {
+        return repository.getCurators();
     }
 
     public void addPainting(Painting painting) {
         repository.addPainting(painting);
     }
 
+    public void addAuthor(Author author) {
+        repository.addAuthor(author);
+    }
+
+    public void addCurator(Curator curator) {
+        repository.addCurator(curator);
+    }
+
     public void editPainting(Painting painting) {
         repository.updatePainting(painting);
     }
 
-    public void deletePainting(UUID id) {
+    public void deletePainting(Long id) {
         repository.deletePainting(id);
     }
-
 }

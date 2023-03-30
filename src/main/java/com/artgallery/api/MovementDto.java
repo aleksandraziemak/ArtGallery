@@ -5,5 +5,7 @@ public enum MovementDto {
     RENAISSANCE,
     POPART,
     REALISM,
-    HISTORISM
+    HISTORISM,
+    ART_DECO,
+    BAROQUE
 }

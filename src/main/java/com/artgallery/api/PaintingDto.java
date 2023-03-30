@@ -7,7 +7,9 @@ public class PaintingDto {
     private long year;
     private MovementDto movement;
     private AuthorDto author;
-    private UUID id;
+    private CuratorDto curator;
+    private Long id;
+    private StatusDto status;
 
     public String getTitle() {
         return title;
@@ -41,11 +43,27 @@ public class PaintingDto {
         this.author = author;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
+    }
+
+    public CuratorDto getCurator() {
+        return curator;
+    }
+
+    public void setCurator(CuratorDto curator) {
+        this.curator = curator;
+    }
+
+    public StatusDto getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusDto status) {
+        this.status = status;
     }
 }

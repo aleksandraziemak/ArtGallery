@@ -2,3 +2,16 @@ server:
   port: 8080
   servlet:
     context-path: /art-gallery
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: "mysecretpassword"
+    name: "postgres"
+  jooq:
+    sql-dialect: POSTGRES
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    drop-first: false
