@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1/authors")
-public class AuthorController {
+@RequestMapping("/api/1/curator")
+public class CuratorController {
 
     private final ArtService artService;
 
-    public AuthorController(ArtService artService) {
+    public CuratorController(ArtService artService) {
         this.artService = artService;
     }
 
     @GetMapping
-    ResponseEntity<List<AuthorDto>> getAuthors() {
-        return ResponseEntity.ok(AuthorMapperDto.map(artService.getAuthors()));
+    ResponseEntity<List<CuratorDto>> getCurators() {
+        return ResponseEntity.ok(CuratorMapperDto.map(artService.getCurators()));
     }
 
     @PostMapping("/add")
-    ResponseEntity<Void> addAuthor(@RequestBody AddAuthorDto author) {
-        artService.addAuthor(AuthorMapperDto.map(author));
+    ResponseEntity<Void> addCurator(@RequestBody AddCuratorDto curator) {
+        artService.addCurator(CuratorMapperDto.map(curator));
         return ResponseEntity.ok().build();
     }
 }

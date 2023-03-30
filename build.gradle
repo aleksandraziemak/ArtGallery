@@ -1,6 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'checkstyle'
+plugins {
+    id 'java'
+    id 'application'
+    id 'checkstyle'
+    id 'nu.studer.jooq' version '8.1' apply true
+}
 
 repositories {
     mavenCentral()
@@ -12,10 +15,59 @@ targetCompatibility = 17
 dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-web:3.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq:3.0.3'
+    implementation 'org.postgresql:postgresql:42.5.4'
+
+    implementation 'org.liquibase:liquibase-core:4.19.1'
+
+    jooqGenerator files("src/main/resources")
+    jooqGenerator 'org.jooq:jooq-meta-extensions-liquibase:3.17.8'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 }
 
 test {
     useJUnitPlatform()
+}
+
+checkstyleMain {
+    source = fileTree('src/main/java')
+}
+
+jooq {
+    version = '3.17.8'
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = false
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                generator {
+                    database {
+                        name = 'org.jooq.meta.extensions.liquibase.LiquibaseDatabase'
+                        properties {
+                            property {
+                                key = 'scripts'
+                                value = 'db/changelog.xml'
+                            }
+                            property {
+                                key = 'includeLiquibaseTables'
+                                value = 'false'
+                            }
+                            property {
+                                key = 'dialect'
+                                value = 'PostgreSQL'
+                            }
+                        }
+                    }
+                    generate {
+                        generatedAnnotation = true
+                    }
+                    target {
+                        packageName = 'com.artgallery.dao.db'
+                        directory = 'src/main/generated'
+                    }
+                }
+            }
+        }
+    }
 }

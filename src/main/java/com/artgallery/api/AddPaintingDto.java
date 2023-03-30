@@ -2,9 +2,11 @@ package com.artgallery.api;
 
 public class AddPaintingDto {
     private String title;
-    private long year;
+    private Long year;
     private MovementDto movement;
+    private StatusDto status;
     private AddAuthorDto author;
+    private AddCuratorDto curator;
 
     public String getTitle() {
         return title;
@@ -14,11 +16,11 @@ public class AddPaintingDto {
         this.title = title;
     }
 
-    public long getYear() {
+    public Long getYear() {
         return year;
     }
 
-    public void setYear(long year) {
+    public void setYear(Long year) {
         this.year = year;
     }
 
@@ -30,11 +32,27 @@ public class AddPaintingDto {
         this.movement = movement;
     }
 
+    public StatusDto getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusDto status) {
+        this.status = status;
+    }
+
     public AddAuthorDto getAuthor() {
         return author;
     }
 
     public void setAuthor(AddAuthorDto author) {
         this.author = author;
+    }
+
+    public AddCuratorDto getCurator() {
+        return curator;
+    }
+
+    public void setCurator(AddCuratorDto curator) {
+        this.curator = curator;
     }
 }

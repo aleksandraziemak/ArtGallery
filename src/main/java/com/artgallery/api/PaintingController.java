@@ -3,7 +3,6 @@ package com.artgallery.api;
 import com.artgallery.domain.ArtService;
 import com.artgallery.domain.model.Painting;
 import java.util.List;
-import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,14 +35,14 @@ public class PaintingController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Void> delete(@PathVariable UUID id) {
+    ResponseEntity<Void> delete(@PathVariable Long id) {
         artService.deletePainting(id);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("/edit")
-    ResponseEntity<Painting> editPainting(@RequestBody EditPaintingDto painting) {
-        artService.editPainting(PaintingMapperDto.map(painting));
+    @PatchMapping("/{id}")
+    ResponseEntity<Painting> editPainting(@RequestBody EditPaintingDto painting, @PathVariable Long id) {
+        artService.editPainting(PaintingMapperDto.map(painting, id));
         return ResponseEntity.ok().build();
     }
 }

@@ -1,62 +1,41 @@
 package com.artgallery.infrastructure;
 
+import com.artgallery.dao.db.tables.records.AuthorRecord;
+import com.artgallery.dao.db.tables.records.CuratorRecord;
+import com.artgallery.dao.db.tables.records.PaintingRecord;
 import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
-import java.util.List;
-import java.util.UUID;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.artgallery.domain.model.Status;
 
 public class ArtMapper {
 
-    private static final String TITLE = "title";
-    private static final String YEAR = "year";
-    private static final String MOVEMENT = "movement";
-    private static final String ID = "id";
-    private static final String AUTHOR = "author";
-    private static final String FIRST_NAME = "firstName";
-    private static final String SECOND_NAME = "secondName";
-    private static final String LAST_NAME = "lastName";
-    private static final String COUNTRY = "country";
-
-    public static JSONArray mapPaintings(List<Painting> paintings) {
-        JSONArray jsonPaintings = new JSONArray();
-        paintings.stream()
-            .map(ArtMapper::mapPainting)
-            .forEach(jsonPaintings::add);
-        return jsonPaintings;
+    public static Painting mapPainting(PaintingRecord paintingRecord, AuthorRecord authorRecord, CuratorRecord curatorRecord) {
+        Painting painting = new Painting(paintingRecord.getId());
+        painting.setMovement(Movement.valueOf(paintingRecord.getMovement()));
+        painting.setYear(paintingRecord.getYear());
+        painting.setTitle(paintingRecord.getTitle());
+        painting.setAuthor(mapAuthor(authorRecord));
+        painting.setCurator(mapCurator(curatorRecord));
+        painting.setStatus(Status.valueOf(paintingRecord.getStatus()));
+        return painting;
     }
 
-    public static JSONObject mapPainting(Painting painting) {
-        JSONObject newPainting = new JSONObject();
-        newPainting.put(TITLE, painting.getTitle());
-        newPainting.put(YEAR, painting.getYear());
-        newPainting.put(MOVEMENT, painting.getMovement().name());
-        newPainting.put(ID, painting.getId().toString());
-        JSONObject newAuthor = new JSONObject();
-        newAuthor.put(FIRST_NAME, painting.getAuthor().getFirstName());
-        newAuthor.put(SECOND_NAME, painting.getAuthor().getSecondName().orElse(null));
-        newAuthor.put(LAST_NAME, painting.getAuthor().getLastName());
-        newAuthor.put(COUNTRY, painting.getAuthor().getCountry());
-        newPainting.put(AUTHOR, newAuthor);
-        return newPainting;
+    public static Author mapAuthor(AuthorRecord record) {
+        Author author = new Author(record.getId());
+        author.setFirstName(record.getFirstName());
+        author.setSecondName(record.getSecondName());
+        author.setLastName(record.getLastName());
+        author.setCountry(record.getCountry());
+        return author;
     }
 
-    public static Painting mapJson(JSONObject painting) {
-        JSONObject jsonAuthor = (JSONObject) painting.get(AUTHOR);
-        Author author = new Author(
-            (String) jsonAuthor.get(FIRST_NAME),
-            (String) jsonAuthor.get(SECOND_NAME),
-            (String) jsonAuthor.get(LAST_NAME),
-            (String) jsonAuthor.get(COUNTRY)
-        );
-        return new Painting(
-            (String) painting.get(TITLE),
-            Movement.valueOf((String) painting.get(MOVEMENT)),
-            (long) painting.get(YEAR),
-            author,
-            UUID.fromString((String) painting.get(ID))
-        );
+    public static Curator mapCurator(CuratorRecord record) {
+        Curator curator = new Curator(record.getId());
+        curator.setFirstName(record.getFirstName());
+        curator.setLastName(record.getLastName());
+        curator.setSalary(record.getSalary());
+        return curator;
     }
 }

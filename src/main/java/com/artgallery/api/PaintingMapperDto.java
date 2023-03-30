@@ -1,8 +1,10 @@
 package com.artgallery.api;
 
+import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
-import com.artgallery.domain.util.UuidGeneratorUtil;
+import com.artgallery.domain.model.Status;
 import java.util.List;
 
 public class PaintingMapperDto {
@@ -16,28 +18,36 @@ public class PaintingMapperDto {
     private static PaintingDto map(Painting painting) {
         PaintingDto paintingDto = new PaintingDto();
         paintingDto.setAuthor(AuthorMapperDto.map(painting.getAuthor()));
+        paintingDto.setCurator(CuratorMapperDto.map(painting.getCurator()));
         paintingDto.setTitle(painting.getTitle());
         paintingDto.setYear(painting.getYear());
         paintingDto.setId(painting.getId());
         paintingDto.setMovement(MovementDto.valueOf(painting.getMovement().name()));
+        paintingDto.setStatus(StatusDto.valueOf(painting.getStatus().name()));
         return paintingDto;
     }
 
     public static Painting map(AddPaintingDto paintingDto) {
-        Painting painting = new Painting(UuidGeneratorUtil.uuidGenerate());
+        Painting painting = new Painting();
         painting.setAuthor(AuthorMapperDto.map(paintingDto.getAuthor()));
+        painting.setCurator(CuratorMapperDto.map(paintingDto.getCurator()));
         painting.setTitle(paintingDto.getTitle());
         painting.setYear(paintingDto.getYear());
         painting.setMovement(Movement.valueOf(paintingDto.getMovement().name()));
+        painting.setStatus(Status.valueOf(paintingDto.getStatus().name()));
         return painting;
     }
 
-    public static Painting map(EditPaintingDto paintingDto) {
-        Painting painting = new Painting(paintingDto.getId());
-        painting.setAuthor(AuthorMapperDto.map(paintingDto.getAuthor()));
+    public static Painting map(EditPaintingDto paintingDto, Long id) {
+        Painting painting = new Painting(id);
         painting.setTitle(paintingDto.getTitle());
         painting.setYear(paintingDto.getYear());
         painting.setMovement(Movement.valueOf(paintingDto.getMovement().name()));
+        painting.setStatus(Status.valueOf(paintingDto.getStatus().name()));
+        Author author = new Author(paintingDto.getAuthor().getId());
+        painting.setAuthor(author);
+        Curator curator = new Curator(paintingDto.getCurator().getId());
+        painting.setCurator(curator);
         return painting;
     }
 }

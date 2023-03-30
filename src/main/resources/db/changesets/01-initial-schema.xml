@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="aleksandra.ziemak">
+
+        <createTable tableName="curator">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary" type="numeric(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="author">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="second_name" type="text"/>
+            <column name="last_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="painting">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curator_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movement" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="author_id"
+                                 baseTableName="painting"
+                                 constraintName="fk_painting_author"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="author"/>
+        <addForeignKeyConstraint baseColumnNames="curator_id"
+                                 baseTableName="painting"
+                                 constraintName="fk_painting_curator"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="curator"/>
+
+        <createTable tableName="bank_account">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_number" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="client">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="transaction">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="painting_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curator_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bank_account_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="painting_id"
+                                 baseTableName="transaction"
+                                 constraintName="fk_transaction_painting"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="painting"/>
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="transaction"
+                                 constraintName="fk_transaction_client"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+        <addForeignKeyConstraint baseColumnNames="curator_id"
+                                 baseTableName="transaction"
+                                 constraintName="fk_transaction_curator"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="curator"/>
+        <addForeignKeyConstraint baseColumnNames="bank_account_id"
+                                 baseTableName="transaction"
+                                 constraintName="fk_transaction_bank_account"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bank_account"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class Author {
+    private Long id;
     private String firstName;
     private String secondName;
     private String lastName;
@@ -12,7 +13,13 @@ public class Author {
     public Author() {
     }
 
-    public Author(String firstName, String secondName, String lastName, String country) {
+
+    public Author(Long id) {
+        this.id = id;
+    }
+
+    public Author(Long id, String firstName, String secondName, String lastName, String country) {
+        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.lastName = lastName;
@@ -33,6 +40,10 @@ public class Author {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public String getFirstName() {
