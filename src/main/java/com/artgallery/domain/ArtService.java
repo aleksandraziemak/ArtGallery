@@ -1,6 +1,7 @@
 package com.artgallery.domain;
 
 import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.CollectionEntry;
 import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.infrastructure.ArtRepositoryDatabase;
@@ -14,6 +15,10 @@ public class ArtService {
 
     public ArtService(ArtRepositoryDatabase repository) {
         this.repository = repository;
+    }
+
+    public List<CollectionEntry> getCollection() {
+        return repository.getCollection();
     }
 
     public List<Painting> getPaintings() {

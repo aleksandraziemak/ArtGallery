@@ -27,13 +27,4 @@ public class CuratorMapperDto {
         curator.setSalary(curatorDto.getSalary());
         return curator;
     }
-
-//    public static Author map(EditAuthorDto authorDto) {
-//        Author author = new Author();
-//        author.setFirstName(authorDto.getFirstName());
-//        author.setSecondName(authorDto.getSecondName());
-//        author.setLastName(authorDto.getLastName());
-//        author.setCountry(authorDto.getCountry());
-//        return author;
-//    }
 }

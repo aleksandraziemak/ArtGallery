@@ -6,4 +6,5 @@
 
     <!--schema-->
     <include file="changesets/01-initial-schema.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/02-painting-schema.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

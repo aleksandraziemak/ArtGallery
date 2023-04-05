@@ -7,12 +7,14 @@ package com.artgallery.dao.db;
 import com.artgallery.dao.db.tables.Author;
 import com.artgallery.dao.db.tables.BankAccount;
 import com.artgallery.dao.db.tables.Client;
+import com.artgallery.dao.db.tables.CollectionEntry;
 import com.artgallery.dao.db.tables.Curator;
 import com.artgallery.dao.db.tables.Painting;
 import com.artgallery.dao.db.tables.Transaction;
 import com.artgallery.dao.db.tables.records.AuthorRecord;
 import com.artgallery.dao.db.tables.records.BankAccountRecord;
 import com.artgallery.dao.db.tables.records.ClientRecord;
+import com.artgallery.dao.db.tables.records.CollectionEntryRecord;
 import com.artgallery.dao.db.tables.records.CuratorRecord;
 import com.artgallery.dao.db.tables.records.PaintingRecord;
 import com.artgallery.dao.db.tables.records.TransactionRecord;
@@ -47,6 +49,7 @@ public class Keys {
     public static final UniqueKey<AuthorRecord> PK_AUTHOR = Internal.createUniqueKey(Author.AUTHOR, DSL.name("PK_AUTHOR"), new TableField[] { Author.AUTHOR.ID }, true);
     public static final UniqueKey<BankAccountRecord> PK_BANK_ACCOUNT = Internal.createUniqueKey(BankAccount.BANK_ACCOUNT, DSL.name("PK_BANK_ACCOUNT"), new TableField[] { BankAccount.BANK_ACCOUNT.ID }, true);
     public static final UniqueKey<ClientRecord> PK_CLIENT = Internal.createUniqueKey(Client.CLIENT, DSL.name("PK_CLIENT"), new TableField[] { Client.CLIENT.ID }, true);
+    public static final UniqueKey<CollectionEntryRecord> PK_COLLECTION_ENTRY = Internal.createUniqueKey(CollectionEntry.COLLECTION_ENTRY, DSL.name("PK_COLLECTION_ENTRY"), new TableField[] { CollectionEntry.COLLECTION_ENTRY.ID }, true);
     public static final UniqueKey<CuratorRecord> PK_CURATOR = Internal.createUniqueKey(Curator.CURATOR, DSL.name("PK_CURATOR"), new TableField[] { Curator.CURATOR.ID }, true);
     public static final UniqueKey<PaintingRecord> PK_PAINTING = Internal.createUniqueKey(Painting.PAINTING, DSL.name("PK_PAINTING"), new TableField[] { Painting.PAINTING.ID }, true);
     public static final UniqueKey<TransactionRecord> PK_TRANSACTION = Internal.createUniqueKey(Transaction.TRANSACTION, DSL.name("PK_TRANSACTION"), new TableField[] { Transaction.TRANSACTION.ID }, true);
@@ -55,8 +58,9 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<PaintingRecord, AuthorRecord> FK_PAINTING_AUTHOR = Internal.createForeignKey(Painting.PAINTING, DSL.name("FK_PAINTING_AUTHOR"), new TableField[] { Painting.PAINTING.AUTHOR_ID }, Keys.PK_AUTHOR, new TableField[] { Author.AUTHOR.ID }, true);
-    public static final ForeignKey<PaintingRecord, CuratorRecord> FK_PAINTING_CURATOR = Internal.createForeignKey(Painting.PAINTING, DSL.name("FK_PAINTING_CURATOR"), new TableField[] { Painting.PAINTING.CURATOR_ID }, Keys.PK_CURATOR, new TableField[] { Curator.CURATOR.ID }, true);
+    public static final ForeignKey<CollectionEntryRecord, AuthorRecord> FK_COLLECTION_AUTHOR = Internal.createForeignKey(CollectionEntry.COLLECTION_ENTRY, DSL.name("FK_COLLECTION_AUTHOR"), new TableField[] { CollectionEntry.COLLECTION_ENTRY.AUTHOR_ID }, Keys.PK_AUTHOR, new TableField[] { Author.AUTHOR.ID }, true);
+    public static final ForeignKey<CollectionEntryRecord, CuratorRecord> FK_COLLECTION_CURATOR = Internal.createForeignKey(CollectionEntry.COLLECTION_ENTRY, DSL.name("FK_COLLECTION_CURATOR"), new TableField[] { CollectionEntry.COLLECTION_ENTRY.CURATOR_ID }, Keys.PK_CURATOR, new TableField[] { Curator.CURATOR.ID }, true);
+    public static final ForeignKey<CollectionEntryRecord, PaintingRecord> FK_COLLECTION_PAINTING = Internal.createForeignKey(CollectionEntry.COLLECTION_ENTRY, DSL.name("FK_COLLECTION_PAINTING"), new TableField[] { CollectionEntry.COLLECTION_ENTRY.PAINTING_ID }, Keys.PK_PAINTING, new TableField[] { Painting.PAINTING.ID }, true);
     public static final ForeignKey<TransactionRecord, BankAccountRecord> FK_TRANSACTION_BANK_ACCOUNT = Internal.createForeignKey(Transaction.TRANSACTION, DSL.name("FK_TRANSACTION_BANK_ACCOUNT"), new TableField[] { Transaction.TRANSACTION.BANK_ACCOUNT_ID }, Keys.PK_BANK_ACCOUNT, new TableField[] { BankAccount.BANK_ACCOUNT.ID }, true);
     public static final ForeignKey<TransactionRecord, ClientRecord> FK_TRANSACTION_CLIENT = Internal.createForeignKey(Transaction.TRANSACTION, DSL.name("FK_TRANSACTION_CLIENT"), new TableField[] { Transaction.TRANSACTION.CLIENT_ID }, Keys.PK_CLIENT, new TableField[] { Client.CLIENT.ID }, true);
     public static final ForeignKey<TransactionRecord, CuratorRecord> FK_TRANSACTION_CURATOR = Internal.createForeignKey(Transaction.TRANSACTION, DSL.name("FK_TRANSACTION_CURATOR"), new TableField[] { Transaction.TRANSACTION.CURATOR_ID }, Keys.PK_CURATOR, new TableField[] { Curator.CURATOR.ID }, true);

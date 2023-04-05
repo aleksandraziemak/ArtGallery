@@ -1,11 +1,14 @@
 package com.artgallery.domain;
 
 import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.CollectionEntry;
 import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Painting;
 import java.util.List;
 
 public interface ArtRepository {
+
+    List<CollectionEntry> getCollection();
 
     List<Painting> getPaintings();
 
