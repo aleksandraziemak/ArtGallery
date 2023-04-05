@@ -7,6 +7,7 @@ package com.artgallery.dao.db;
 import com.artgallery.dao.db.tables.Author;
 import com.artgallery.dao.db.tables.BankAccount;
 import com.artgallery.dao.db.tables.Client;
+import com.artgallery.dao.db.tables.CollectionEntry;
 import com.artgallery.dao.db.tables.Curator;
 import com.artgallery.dao.db.tables.Painting;
 import com.artgallery.dao.db.tables.Transaction;
@@ -57,6 +58,11 @@ public class DefaultSchema extends SchemaImpl {
     public final Client CLIENT = Client.CLIENT;
 
     /**
+     * The table <code>COLLECTION_ENTRY</code>.
+     */
+    public final CollectionEntry COLLECTION_ENTRY = CollectionEntry.COLLECTION_ENTRY;
+
+    /**
      * The table <code>CURATOR</code>.
      */
     public final Curator CURATOR = Curator.CURATOR;
@@ -90,6 +96,7 @@ public class DefaultSchema extends SchemaImpl {
             Author.AUTHOR,
             BankAccount.BANK_ACCOUNT,
             Client.CLIENT,
+            CollectionEntry.COLLECTION_ENTRY,
             Curator.CURATOR,
             Painting.PAINTING,
             Transaction.TRANSACTION

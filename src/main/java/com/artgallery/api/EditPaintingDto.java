@@ -5,9 +5,6 @@ public class EditPaintingDto {
     private long year;
     private MovementDto movement;
     private StatusDto status;
-    private Long id;
-    private AuthorDto author;
-    private CuratorDto curator;
 
     public String getTitle() {
         return title;
@@ -39,29 +36,5 @@ public class EditPaintingDto {
 
     public void setStatus(StatusDto status) {
         this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public AuthorDto getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(AuthorDto author) {
-        this.author = author;
-    }
-
-    public CuratorDto getCurator() {
-        return curator;
-    }
-
-    public void setCurator(CuratorDto curator) {
-        this.curator = curator;
     }
 }

@@ -7,8 +7,6 @@ public class Painting {
     private String title;
     private Long year;
     private Movement movement;
-    private Author author;
-    private Curator curator;
     private Status status;
 
     public Painting() {
@@ -18,13 +16,12 @@ public class Painting {
         this.id = id;
     }
 
-    public Painting(String title, Movement movement, long year, Author author, Long id, Status status) {
+    public Painting(String title, Movement movement, long year, Long id, Status status) {
+        this.id = id;
         this.title = title;
         this.year = year;
         this.movement = movement;
         this.status = status;
-        this.author = author;
-        this.id = id;
     }
 
     public Long getId() {
@@ -57,22 +54,6 @@ public class Painting {
 
     public void setMovement(Movement movement) {
         this.movement = movement;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public Curator getCurator() {
-        return curator;
-    }
-
-    public void setCurator(Curator curator) {
-        this.curator = curator;
     }
 
     public Status getStatus() {

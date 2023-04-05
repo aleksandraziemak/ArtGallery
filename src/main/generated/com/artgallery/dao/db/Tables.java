@@ -7,6 +7,7 @@ package com.artgallery.dao.db;
 import com.artgallery.dao.db.tables.Author;
 import com.artgallery.dao.db.tables.BankAccount;
 import com.artgallery.dao.db.tables.Client;
+import com.artgallery.dao.db.tables.CollectionEntry;
 import com.artgallery.dao.db.tables.Curator;
 import com.artgallery.dao.db.tables.Painting;
 import com.artgallery.dao.db.tables.Transaction;
@@ -41,6 +42,11 @@ public class Tables {
      * The table <code>CLIENT</code>.
      */
     public static final Client CLIENT = Client.CLIENT;
+
+    /**
+     * The table <code>COLLECTION_ENTRY</code>.
+     */
+    public static final CollectionEntry COLLECTION_ENTRY = CollectionEntry.COLLECTION_ENTRY;
 
     /**
      * The table <code>CURATOR</code>.

@@ -18,7 +18,6 @@ class ArtMapperTest {
         painting.setTitle("Painting title");
         painting.setYear(1000l);
         painting.setMovement(Movement.valueOf("IMPRESSIONISM"));
-        painting.setAuthor(author);
         return painting;
     }
 

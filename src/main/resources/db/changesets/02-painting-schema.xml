@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="2" author="aleksandra.ziemak">
+        <createTable tableName="collection_entry">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="painting_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curator_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="painting_id"
+                                 baseTableName="collection_entry"
+                                 constraintName="fk_collection_painting"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="painting"/>
+        <addForeignKeyConstraint baseColumnNames="author_id"
+                                 baseTableName="collection_entry"
+                                 constraintName="fk_collection_author"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="author"/>
+        <addForeignKeyConstraint baseColumnNames="curator_id"
+                                 baseTableName="collection_entry"
+                                 constraintName="fk_collection_curator"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="curator"/>
+
+        <dropForeignKeyConstraint baseTableName="painting" constraintName="fk_painting_author"/>
+        <dropColumn tableName="painting" columnName="author_id"/>
+
+        <dropForeignKeyConstraint baseTableName="painting" constraintName="fk_painting_curator"/>
+        <dropColumn tableName="painting" columnName="curator_id"/>
+    </changeSet>
+
+</databaseChangeLog>

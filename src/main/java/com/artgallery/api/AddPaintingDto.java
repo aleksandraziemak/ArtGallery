@@ -5,8 +5,6 @@ public class AddPaintingDto {
     private Long year;
     private MovementDto movement;
     private StatusDto status;
-    private AddAuthorDto author;
-    private AddCuratorDto curator;
 
     public String getTitle() {
         return title;
@@ -38,21 +36,5 @@ public class AddPaintingDto {
 
     public void setStatus(StatusDto status) {
         this.status = status;
-    }
-
-    public AddAuthorDto getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(AddAuthorDto author) {
-        this.author = author;
-    }
-
-    public AddCuratorDto getCurator() {
-        return curator;
-    }
-
-    public void setCurator(AddCuratorDto curator) {
-        this.curator = curator;
     }
 }

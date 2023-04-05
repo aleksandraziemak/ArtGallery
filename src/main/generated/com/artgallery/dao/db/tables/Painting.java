@@ -8,20 +8,18 @@ import com.artgallery.dao.db.DefaultSchema;
 import com.artgallery.dao.db.Keys;
 import com.artgallery.dao.db.tables.records.PaintingRecord;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Function;
 
 import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function7;
+import org.jooq.Function5;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row7;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -65,16 +63,6 @@ public class Painting extends TableImpl<PaintingRecord> {
      * The column <code>PAINTING.ID</code>.
      */
     public final TableField<PaintingRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
-
-    /**
-     * The column <code>PAINTING.AUTHOR_ID</code>.
-     */
-    public final TableField<PaintingRecord, Long> AUTHOR_ID = createField(DSL.name("AUTHOR_ID"), SQLDataType.BIGINT.nullable(false), this, "");
-
-    /**
-     * The column <code>PAINTING.CURATOR_ID</code>.
-     */
-    public final TableField<PaintingRecord, Long> CURATOR_ID = createField(DSL.name("CURATOR_ID"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
      * The column <code>PAINTING.TITLE</code>.
@@ -145,34 +133,6 @@ public class Painting extends TableImpl<PaintingRecord> {
     }
 
     @Override
-    public List<ForeignKey<PaintingRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_PAINTING_AUTHOR, Keys.FK_PAINTING_CURATOR);
-    }
-
-    private transient Author _author;
-    private transient Curator _curator;
-
-    /**
-     * Get the implicit join path to the <code>PUBLIC.AUTHOR</code> table.
-     */
-    public Author author() {
-        if (_author == null)
-            _author = new Author(this, Keys.FK_PAINTING_AUTHOR);
-
-        return _author;
-    }
-
-    /**
-     * Get the implicit join path to the <code>PUBLIC.CURATOR</code> table.
-     */
-    public Curator curator() {
-        if (_curator == null)
-            _curator = new Curator(this, Keys.FK_PAINTING_CURATOR);
-
-        return _curator;
-    }
-
-    @Override
     public Painting as(String alias) {
         return new Painting(DSL.name(alias), this);
     }
@@ -212,18 +172,18 @@ public class Painting extends TableImpl<PaintingRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, String, Long, String, String> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row5<Long, String, Long, String, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -231,7 +191,7 @@ public class Painting extends TableImpl<PaintingRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
