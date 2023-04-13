@@ -23,6 +23,10 @@ public class PaintingMapperDto {
         return paintingDto;
     }
 
+    public static Painting map(Long id) {
+        return new Painting(id);
+    }
+
     public static Painting map(AddPaintingDto paintingDto) {
         Painting painting = new Painting();
         painting.setTitle(paintingDto.getTitle());

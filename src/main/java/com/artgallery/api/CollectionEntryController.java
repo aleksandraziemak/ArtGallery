@@ -1,7 +1,7 @@
 package com.artgallery.api;
 
 import com.artgallery.domain.ArtService;
-import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.Painting;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,35 +14,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1/author")
-public class AuthorController {
+@RequestMapping("/api/1/collection")
+public class CollectionEntryController {
 
     private final ArtService artService;
 
-    public AuthorController(ArtService artService) {
+    public CollectionEntryController(ArtService artService) {
         this.artService = artService;
     }
 
     @GetMapping
-    ResponseEntity<List<AuthorDto>> getAuthors() {
-        return ResponseEntity.ok(AuthorMapperDto.map(artService.getAuthors()));
+    ResponseEntity<List<CollectionEntryDto>> getCollectionEntries() {
+        return ResponseEntity.ok(CollectionEntryMapperDto.map(artService.getCollectionEntries()));
     }
 
     @PostMapping("/add")
-    ResponseEntity<Void> addAuthor(@RequestBody AddAuthorDto author) {
-        artService.addAuthor(AuthorMapperDto.map(author));
+    ResponseEntity<Void> addCollectionEntry(@RequestBody AddCollectionEntryDto collection) {
+        artService.addCollectionEntry(CollectionEntryMapperDto.map(collection));
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
-        artService.deleteAuthor(id);
+    ResponseEntity<Void> deleteCollectionEntry(@PathVariable Long id) {
+        artService.deleteCollectionEntry(id);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{id}")
-    ResponseEntity<Author> editAuthor(@RequestBody EditAuthorDto author, @PathVariable Long id) {
-        artService.editAuthor(AuthorMapperDto.map(author, id));
+    ResponseEntity<Painting> editCollectionEntry(@RequestBody EditCollectionEntryDto collection, @PathVariable Long id) {
+        artService.editCollectionEntry(CollectionEntryMapperDto.map(collection, id));
         return ResponseEntity.ok().build();
     }
 }

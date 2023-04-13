@@ -6,7 +6,19 @@ public class CollectionEntry {
     private Author author;
     private Curator curator;
 
+    public CollectionEntry() {
+        this.id = id;
+    }
+
     public CollectionEntry(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 

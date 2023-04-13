@@ -35,7 +35,7 @@ public class PaintingController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Void> delete(@PathVariable Long id) {
+    ResponseEntity<Void> deletePainting(@PathVariable Long id) {
         artService.deletePainting(id);
         return ResponseEntity.ok().build();
     }

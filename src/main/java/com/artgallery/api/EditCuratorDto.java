@@ -1,24 +1,19 @@
 package com.artgallery.api;
 
-public class CuratorDto {
-    private Long id;
+import java.math.BigDecimal;
+
+public class EditCuratorDto {
     private String firstName;
     private String lastName;
+    private BigDecimal salary;
 
-    public CuratorDto() {
+    public EditCuratorDto() {
     }
 
-    public CuratorDto(String firstName, String lastName) {
+    public EditCuratorDto(String firstName, String lastName, BigDecimal salary) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.salary = salary;
     }
 
     public String getFirstName() {
@@ -35,5 +30,13 @@ public class CuratorDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
     }
 }
