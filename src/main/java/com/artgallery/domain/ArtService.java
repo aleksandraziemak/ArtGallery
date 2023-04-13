@@ -4,52 +4,86 @@ import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.CollectionEntry;
 import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Painting;
-import com.artgallery.infrastructure.ArtRepositoryDatabase;
+import com.artgallery.infrastructure.PaintingRepositoryImpl;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ArtService {
 
-    private final ArtRepository repository;
+    private final PaintingRepository paintingRepository;
+    private final AuthorRepository authorRepository;
+    private final CuratorRepository curatorRepository;
+    private final CollectionEntryRepository collectionEntryRepository;
 
-    public ArtService(ArtRepositoryDatabase repository) {
-        this.repository = repository;
-    }
-
-    public List<CollectionEntry> getCollection() {
-        return repository.getCollection();
+    public ArtService(PaintingRepositoryImpl repository, AuthorRepository authorRepository, CuratorRepository curatorRepository, CollectionEntryRepository collectionEntryRepository) {
+        this.paintingRepository = repository;
+        this.authorRepository = authorRepository;
+        this.curatorRepository = curatorRepository;
+        this.collectionEntryRepository = collectionEntryRepository;
     }
 
     public List<Painting> getPaintings() {
-        return repository.getPaintings();
+        return paintingRepository.getPaintings();
     }
 
     public List<Author> getAuthors() {
-        return repository.getAuthors();
+        return authorRepository.getAuthors();
     }
 
     public List<Curator> getCurators() {
-        return repository.getCurators();
+        return curatorRepository.getCurators();
+    }
+
+    public List<CollectionEntry> getCollectionEntries() {
+        return collectionEntryRepository.getCollectionEntries();
     }
 
     public void addPainting(Painting painting) {
-        repository.addPainting(painting);
+        paintingRepository.addPainting(painting);
     }
 
     public void addAuthor(Author author) {
-        repository.addAuthor(author);
+        authorRepository.addAuthor(author);
     }
 
     public void addCurator(Curator curator) {
-        repository.addCurator(curator);
+        curatorRepository.addCurator(curator);
+    }
+
+    public void addCollectionEntry(CollectionEntry collectionEntry) {
+        collectionEntryRepository.addCollectionEntry(collectionEntry);
     }
 
     public void editPainting(Painting painting) {
-        repository.updatePainting(painting);
+        paintingRepository.updatePainting(painting);
+    }
+
+    public void editAuthor(Author author) {
+        authorRepository.updateAuthor(author);
+    }
+
+    public void editCurator(Curator curator) {
+        curatorRepository.updateCurator(curator);
+    }
+
+    public void editCollectionEntry(CollectionEntry collectionEntry) {
+        collectionEntryRepository.updateCollectionEntry(collectionEntry);
     }
 
     public void deletePainting(Long id) {
-        repository.deletePainting(id);
+        paintingRepository.deletePainting(id);
+    }
+
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteAuthor(id);
+    }
+
+    public void deleteCurator(Long id) {
+        curatorRepository.deleteCurator(id);
+    }
+
+    public void deleteCollectionEntry(Long id) {
+        collectionEntryRepository.deleteCollectionEntry(id);
     }
 }

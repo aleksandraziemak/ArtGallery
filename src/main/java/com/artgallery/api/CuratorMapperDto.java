@@ -1,6 +1,5 @@
 package com.artgallery.api;
 
-import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.Curator;
 import java.util.List;
 
@@ -20,8 +19,20 @@ public class CuratorMapperDto {
         return curatorDto;
     }
 
+    public static Curator map(Long id) {
+        return new Curator(id);
+    }
+
     public static Curator map(AddCuratorDto curatorDto) {
         Curator curator = new Curator();
+        curator.setFirstName(curatorDto.getFirstName());
+        curator.setLastName(curatorDto.getLastName());
+        curator.setSalary(curatorDto.getSalary());
+        return curator;
+    }
+
+    public static Curator map(EditCuratorDto curatorDto, Long id) {
+        Curator curator = new Curator(id);
         curator.setFirstName(curatorDto.getFirstName());
         curator.setLastName(curatorDto.getLastName());
         curator.setSalary(curatorDto.getSalary());

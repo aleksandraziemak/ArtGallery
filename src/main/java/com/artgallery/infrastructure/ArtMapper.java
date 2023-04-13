@@ -42,7 +42,8 @@ public class ArtMapper {
                                                 PaintingRecord paintingRecord,
                                                 AuthorRecord authorRecord,
                                                 CuratorRecord curatorRecord) {
-        CollectionEntry collectionEntry = new CollectionEntry(collectionEntryId);
+        CollectionEntry collectionEntry = new CollectionEntry();
+        collectionEntry.setId(collectionEntryId);
         collectionEntry.setPainting(mapPainting(paintingRecord));
         collectionEntry.setAuthor(mapAuthor(authorRecord));
         collectionEntry.setCurator(mapCurator(curatorRecord));
