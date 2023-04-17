@@ -16,7 +16,8 @@ public class ArtService {
     private final CuratorRepository curatorRepository;
     private final CollectionEntryRepository collectionEntryRepository;
 
-    public ArtService(PaintingRepositoryImpl repository, AuthorRepository authorRepository, CuratorRepository curatorRepository, CollectionEntryRepository collectionEntryRepository) {
+    public ArtService(PaintingRepositoryImpl repository, AuthorRepository authorRepository,
+                      CuratorRepository curatorRepository, CollectionEntryRepository collectionEntryRepository) {
         this.paintingRepository = repository;
         this.authorRepository = authorRepository;
         this.curatorRepository = curatorRepository;

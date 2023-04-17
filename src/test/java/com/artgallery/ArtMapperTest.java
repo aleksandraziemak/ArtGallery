@@ -14,9 +14,9 @@ class ArtMapperTest {
         author.setSecondName(null);
         author.setLastName("Last");
         author.setCountry("Author country");
-        Painting painting = new Painting(1l);
+        Painting painting = new Painting(1L);
         painting.setTitle("Painting title");
-        painting.setYear(1000l);
+        painting.setYear(1000L);
         painting.setMovement(Movement.valueOf("IMPRESSIONISM"));
         return painting;
     }
