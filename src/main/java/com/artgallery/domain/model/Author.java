@@ -2,7 +2,13 @@ package com.artgallery.domain.model;
 
 import java.util.Objects;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class Author {
     private Long id;
     private String firstName;
@@ -13,59 +19,12 @@ public class Author {
     public Author() {
     }
 
-
     public Author(Long id) {
         this.id = id;
     }
 
-    public Author(Long id, String firstName, String secondName, String lastName, String country) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.lastName = lastName;
-        this.country = country;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
     public Optional<String> getSecondName() {
         return Optional.ofNullable(secondName);
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public String getCountry() {
-        return this.country;
-    }
-
-    public String getDescription() {
-        return getSecondName()
-            .map(sn -> String.format("Author: %s %s %s, Country: %s", firstName, sn, lastName, country))
-            .orElse(String.format("Author: %s %s, Country: %s", firstName, lastName, country));
     }
 
     @Override
