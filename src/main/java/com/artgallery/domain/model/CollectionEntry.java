@@ -1,5 +1,12 @@
 package com.artgallery.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class CollectionEntry {
     private Long id;
     private Painting painting;
@@ -12,37 +19,5 @@ public class CollectionEntry {
 
     public CollectionEntry(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Painting getPainting() {
-        return painting;
-    }
-
-    public void setPainting(Painting painting) {
-        this.painting = painting;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public Curator getCurator() {
-        return curator;
-    }
-
-    public void setCurator(Curator curator) {
-        this.curator = curator;
     }
 }
