@@ -1,4 +1,4 @@
-package com.artgallery.domain.model;
+package com.artgallery.api;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Transaction {
+public class TransactionDto {
     private Long id;
     private Long paintingId;
     private Long clientId;
@@ -18,10 +18,10 @@ public class Transaction {
     private BigDecimal value;
     private LocalDate date;
 
-    public Transaction() {
+    public TransactionDto() {
     }
 
-    public Transaction(Long id) {
+    public TransactionDto(Long id) {
         this.id = id;
     }
 }

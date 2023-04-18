@@ -1,14 +1,20 @@
 package com.artgallery.infrastructure;
 
 import com.artgallery.dao.db.tables.records.AuthorRecord;
+import com.artgallery.dao.db.tables.records.BankAccountRecord;
+import com.artgallery.dao.db.tables.records.ClientRecord;
 import com.artgallery.dao.db.tables.records.CuratorRecord;
 import com.artgallery.dao.db.tables.records.PaintingRecord;
+import com.artgallery.dao.db.tables.records.TransactionRecord;
 import com.artgallery.domain.model.Author;
+import com.artgallery.domain.model.BankAccount;
+import com.artgallery.domain.model.Client;
 import com.artgallery.domain.model.CollectionEntry;
 import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.domain.model.Status;
+import com.artgallery.domain.model.Transaction;
 
 public class ArtMapper {
 
@@ -48,5 +54,32 @@ public class ArtMapper {
         collectionEntry.setAuthor(mapAuthor(authorRecord));
         collectionEntry.setCurator(mapCurator(curatorRecord));
         return collectionEntry;
+    }
+
+    public static Client mapClient(ClientRecord record) {
+        Client client = new Client(record.getId());
+        client.setFirstName(record.getFirstName());
+        client.setLastName(record.getLastName());
+        return client;
+    }
+
+    public static BankAccount mapBankAccount(BankAccountRecord record) {
+        BankAccount bankAccount = new BankAccount(record.getId());
+        bankAccount.setName(record.getName());
+        bankAccount.setAccountNumber(record.getAccountNumber());
+        bankAccount.setBalance(record.getBalance());
+        return bankAccount;
+    }
+
+
+    public static Transaction mapTransaction(TransactionRecord record) {
+        Transaction transaction = new Transaction(record.getId());
+        transaction.setPaintingId(record.getPaintingId());
+        transaction.setCuratorId(record.getCuratorId());
+        transaction.setClientId(record.getClientId());
+        transaction.setBankAccountId(record.getBankAccountId());
+        transaction.setValue(record.getValue());
+        transaction.setDate(record.getDate());
+        return transaction;
     }
 }

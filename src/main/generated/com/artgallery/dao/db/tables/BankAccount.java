@@ -8,6 +8,7 @@ import com.artgallery.dao.db.DefaultSchema;
 import com.artgallery.dao.db.Keys;
 import com.artgallery.dao.db.tables.records.BankAccountRecord;
 
+import java.math.BigDecimal;
 import java.util.function.Function;
 
 import javax.annotation.processing.Generated;
@@ -77,7 +78,7 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
     /**
      * The column <code>BANK_ACCOUNT.BALANCE</code>.
      */
-    public final TableField<BankAccountRecord, Long> BALANCE = createField(DSL.name("BALANCE"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<BankAccountRecord, BigDecimal> BALANCE = createField(DSL.name("BALANCE"), SQLDataType.DECIMAL(10, 2).nullable(false), this, "");
 
     private BankAccount(Name alias, Table<BankAccountRecord> aliased) {
         this(alias, aliased, null);
@@ -171,14 +172,14 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Long, String, String, Long> fieldsRow() {
+    public Row4<Long, String, String, BigDecimal> fieldsRow() {
         return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super Long, ? super String, ? super String, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super Long, ? super String, ? super String, ? super BigDecimal, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -186,7 +187,7 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Long, ? super String, ? super String, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Long, ? super String, ? super String, ? super BigDecimal, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
