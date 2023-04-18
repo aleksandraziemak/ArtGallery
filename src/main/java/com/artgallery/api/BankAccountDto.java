@@ -1,4 +1,4 @@
-package com.artgallery.domain.model;
+package com.artgallery.api;
 
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
@@ -8,16 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class BankAccount {
+public class BankAccountDto {
     private Long id;
     private String name;
     private String accountNumber;
     private BigDecimal balance;
 
-    public BankAccount() {
+    public BankAccountDto() {
     }
 
-    public BankAccount(Long id) {
+    public BankAccountDto(Long id) {
         this.id = id;
     }
 }

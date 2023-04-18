@@ -8,6 +8,7 @@ import com.artgallery.dao.db.DefaultSchema;
 import com.artgallery.dao.db.Keys;
 import com.artgallery.dao.db.tables.records.TransactionRecord;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -90,7 +91,7 @@ public class Transaction extends TableImpl<TransactionRecord> {
     /**
      * The column <code>TRANSACTION.value</code>.
      */
-    public final TableField<TransactionRecord, Long> VALUE = createField(DSL.name("value"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<TransactionRecord, BigDecimal> VALUE = createField(DSL.name("value"), SQLDataType.DECIMAL(10, 2).nullable(false), this, "");
 
     /**
      * The column <code>TRANSACTION.DATE</code>.
@@ -239,14 +240,14 @@ public class Transaction extends TableImpl<TransactionRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, Long, Long, Long, LocalDate> fieldsRow() {
+    public Row7<Long, Long, Long, Long, Long, BigDecimal, LocalDate> fieldsRow() {
         return (Row7) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super LocalDate, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -254,7 +255,7 @@ public class Transaction extends TableImpl<TransactionRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super LocalDate, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
