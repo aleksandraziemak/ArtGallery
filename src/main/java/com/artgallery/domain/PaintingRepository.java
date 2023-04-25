@@ -7,6 +7,8 @@ public interface PaintingRepository {
 
     List<Painting> getPaintings();
 
+    Painting find(Long id);
+
     void addPainting(Painting painting);
 
     void updatePainting(Painting painting);

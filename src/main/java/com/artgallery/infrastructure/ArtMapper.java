@@ -15,6 +15,7 @@ import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.domain.model.Status;
 import com.artgallery.domain.model.Transaction;
+import com.artgallery.domain.model.TransactionType;
 
 public class ArtMapper {
 
@@ -80,6 +81,7 @@ public class ArtMapper {
         transaction.setBankAccountId(record.getBankAccountId());
         transaction.setValue(record.getValue());
         transaction.setDate(record.getDate());
+        transaction.setType(TransactionType.valueOf(record.getType()));
         return transaction;
     }
 }

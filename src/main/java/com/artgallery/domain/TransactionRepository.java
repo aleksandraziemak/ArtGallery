@@ -9,7 +9,5 @@ public interface TransactionRepository {
 
     Long addTransaction(Transaction transaction);
 
-    void updateTransaction(Transaction transaction);
-
     void deleteTransaction(Long id);
 }

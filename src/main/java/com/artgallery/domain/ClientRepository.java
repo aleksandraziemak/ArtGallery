@@ -1,6 +1,5 @@
 package com.artgallery.domain;
 
-import com.artgallery.domain.model.Author;
 import com.artgallery.domain.model.Client;
 import java.util.List;
 
