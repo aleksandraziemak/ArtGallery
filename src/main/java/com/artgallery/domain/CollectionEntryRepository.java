@@ -7,7 +7,7 @@ public interface CollectionEntryRepository {
 
     List<CollectionEntry> getCollectionEntries();
 
-    Long addCollectionEntry(CollectionEntry collectionEntry);
+    Long addCollectionEntry(Long paintingId, Long authorId, Long curatorId);
 
     void updateCollectionEntry(CollectionEntry collectionEntry);
 

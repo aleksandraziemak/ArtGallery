@@ -1,52 +1,35 @@
 package com.artgallery.infrastructure;
 
-import static com.artgallery.dao.db.Tables.CLIENT;
-
 import com.artgallery.domain.ClientRepository;
 import com.artgallery.domain.model.Client;
+import com.artgallery.infrastructure.dao.ClientDao;
 import java.util.List;
-import org.jooq.DSLContext;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@AllArgsConstructor
 public class ClientRepositoryImpl implements ClientRepository {
 
-    private final DSLContext dslContext;
-
-    public ClientRepositoryImpl(DSLContext dslContext) {
-        this.dslContext = dslContext;
-    }
+    private final ClientDao clientDao;
 
     @Override
     public List<Client> getClients() {
-        return dslContext.selectFrom(CLIENT)
-            .fetch()
-            .map(ArtMapper::mapClient);
+        return clientDao.getClients();
     }
 
     @Override
     public Long addClient(Client client) {
-        return dslContext.insertInto(CLIENT,
-                CLIENT.FIRST_NAME, CLIENT.LAST_NAME)
-            .values(client.getFirstName(), client.getLastName())
-            .returning()
-            .fetchOne()
-            .getId();
+        return clientDao.addClient(client);
     }
 
     @Override
     public void updateClient(Client client) {
-        dslContext.update(CLIENT)
-            .set(CLIENT.FIRST_NAME, client.getFirstName())
-            .set(CLIENT.LAST_NAME, client.getLastName())
-            .where(CLIENT.ID.eq(client.getId()))
-            .execute();
+        clientDao.updateClient(client);
     }
 
     @Override
     public void deleteClient(Long id) {
-        dslContext.deleteFrom(CLIENT)
-            .where(CLIENT.ID.eq(id))
-            .execute();
+        clientDao.deleteClient(id);
     }
 }

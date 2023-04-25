@@ -14,7 +14,6 @@ public class CollectionEntry {
     private Curator curator;
 
     public CollectionEntry() {
-        this.id = id;
     }
 
     public CollectionEntry(Long id) {

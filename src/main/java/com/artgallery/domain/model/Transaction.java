@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Transaction {
     private Long id;
+    private TransactionType type;
     private Long paintingId;
     private Long clientId;
     private Long curatorId;

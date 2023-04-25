@@ -18,12 +18,12 @@ import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function7;
+import org.jooq.Function8;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -97,6 +97,11 @@ public class Transaction extends TableImpl<TransactionRecord> {
      * The column <code>TRANSACTION.DATE</code>.
      */
     public final TableField<TransactionRecord, LocalDate> DATE = createField(DSL.name("DATE"), SQLDataType.LOCALDATE.nullable(false), this, "");
+
+    /**
+     * The column <code>TRANSACTION.TYPE</code>.
+     */
+    public final TableField<TransactionRecord, String> TYPE = createField(DSL.name("TYPE"), SQLDataType.CLOB, this, "");
 
     private Transaction(Name alias, Table<TransactionRecord> aliased) {
         this(alias, aliased, null);
@@ -236,18 +241,18 @@ public class Transaction extends TableImpl<TransactionRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Long, Long, Long, Long, Long, BigDecimal, LocalDate> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Long, Long, Long, Long, Long, BigDecimal, LocalDate, String> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function8<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -255,7 +260,7 @@ public class Transaction extends TableImpl<TransactionRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function8<? super Long, ? super Long, ? super Long, ? super Long, ? super Long, ? super BigDecimal, ? super LocalDate, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
