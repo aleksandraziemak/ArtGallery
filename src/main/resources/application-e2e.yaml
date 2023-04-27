@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /art-gallery
+
+spring:
+  datasource:
+    username: test
+    password: test
+    url: jdbc:tc:postgresql:13.7:///test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
