@@ -1,7 +1,9 @@
 package com.artgallery.api.transaction;
 
 import com.artgallery.domain.model.Transaction;
+import com.artgallery.domain.model.TransactionCurrency;
 import com.artgallery.domain.model.TransactionType;
+import com.artgallery.domain.model.TransactionValue;
 import java.util.List;
 
 public class TransactionMapperDto {
@@ -19,7 +21,7 @@ public class TransactionMapperDto {
         transactionDto.setCuratorId(transaction.getCuratorId());
         transactionDto.setClientId(transaction.getClientId());
         transactionDto.setBankAccountId(transaction.getBankAccountId());
-        transactionDto.setValue(transaction.getValue());
+        transactionDto.setValue(transaction.getTransactionValue().getValue());
         transactionDto.setDate(transaction.getDate());
         transactionDto.setType(TransactionTypeDto.valueOf(transaction.getType().name()));
         return transactionDto;
@@ -31,9 +33,16 @@ public class TransactionMapperDto {
         transaction.setCuratorId(transactionDto.getCuratorId());
         transaction.setClientId(transactionDto.getClientId());
         transaction.setBankAccountId(transactionDto.getBankAccountId());
-        transaction.setValue(transactionDto.getValue());
+        transaction.setTransactionValue(map(transactionDto.getTransactionValue()));
         transaction.setDate(transactionDto.getDate());
         transaction.setType(TransactionType.valueOf(transactionDto.getType().name()));
         return transaction;
+    }
+
+    private static TransactionValue map(TransactionValueDto transactionValueDto) {
+        TransactionValue transactionValue = new TransactionValue();
+        transactionValue.setCurrency(TransactionCurrency.valueOf(transactionValueDto.getCurrency().name()));
+        transactionValue.setValue(transactionValueDto.getValue());
+        return transactionValue;
     }
 }

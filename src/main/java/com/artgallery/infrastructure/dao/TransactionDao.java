@@ -26,7 +26,8 @@ public class TransactionDao {
                 TRANSACTION.PAINTING_ID, TRANSACTION.CURATOR_ID, TRANSACTION.CLIENT_ID,
                 TRANSACTION.BANK_ACCOUNT_ID, TRANSACTION.VALUE, TRANSACTION.DATE, TRANSACTION.TYPE)
             .values(transaction.getPaintingId(), transaction.getCuratorId(), transaction.getClientId(),
-                transaction.getBankAccountId(), transaction.getValue(), transaction.getDate(), transaction.getType().name())
+                transaction.getBankAccountId(), transaction.getTransactionValue().getValue(),
+                transaction.getDate(), transaction.getType().name())
             .returning()
             .fetchOne()
             .getId();

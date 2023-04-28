@@ -1,6 +1,5 @@
 package com.artgallery.domain.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +15,7 @@ public class Transaction {
     private Long clientId;
     private Long curatorId;
     private Long bankAccountId;
-    private BigDecimal value;
+    private TransactionValue transactionValue;
     private LocalDate date;
 
     public Transaction() {

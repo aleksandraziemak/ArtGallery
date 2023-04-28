@@ -15,7 +15,10 @@ import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
 import com.artgallery.domain.model.Status;
 import com.artgallery.domain.model.Transaction;
+import com.artgallery.domain.model.TransactionCurrency;
 import com.artgallery.domain.model.TransactionType;
+import com.artgallery.domain.model.TransactionValue;
+import java.math.BigDecimal;
 
 public class ArtMapper {
 
@@ -79,9 +82,16 @@ public class ArtMapper {
         transaction.setCuratorId(record.getCuratorId());
         transaction.setClientId(record.getClientId());
         transaction.setBankAccountId(record.getBankAccountId());
-        transaction.setValue(record.getValue());
+        transaction.setTransactionValue(createTransactionValue(record.getValue()));
         transaction.setDate(record.getDate());
         transaction.setType(TransactionType.valueOf(record.getType()));
         return transaction;
+    }
+
+    private static TransactionValue createTransactionValue(BigDecimal value) {
+        TransactionValue transactionValue = new TransactionValue();
+        transactionValue.setValue(value);
+        transactionValue.setCurrency(TransactionCurrency.PLN);
+        return transactionValue;
     }
 }

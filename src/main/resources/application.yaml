@@ -15,3 +15,7 @@ spring:
   liquibase:
     change-log: classpath:db/changelog.xml
     drop-first: false
+
+nbp:
+  host: "http://api.nbp.pl"
+  currency-path: "/api/exchangerates/rates/c/{currency}/today/"

@@ -44,8 +44,8 @@ class TransactionServiceImpl implements TransactionService {
         BankAccount bankAccount = bankAccountRepository.find(transaction.getBankAccountId());
         painting.setStatus(TRANSACTION_TYPE_STATUS_MAP.get(transaction.getType()));
         switch (transaction.getType()) {
-            case SELL, IN_RENT -> bankAccount.setBalance(bankAccount.getBalance().add(transaction.getValue()));
-            case BUY, RENT -> bankAccount.setBalance(bankAccount.getBalance().subtract(transaction.getValue()));
+            case SELL, IN_RENT -> bankAccount.setBalance(bankAccount.getBalance().add(transaction.getTransactionValue().getValue()));
+            case BUY, RENT -> bankAccount.setBalance(bankAccount.getBalance().subtract(transaction.getTransactionValue().getValue()));
             default -> throw new IllegalStateException("Wrong transaction type");
         }
         paintingRepository.updatePainting(painting);
