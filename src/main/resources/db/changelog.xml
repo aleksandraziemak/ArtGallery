@@ -9,4 +9,5 @@
     <include file="changesets/02-painting-schema.xml" relativeToChangelogFile="true"/>
     <include file="changesets/03-value-to-numeric.xml" relativeToChangelogFile="true"/>
     <include file="changesets/04-transaction-type.xml" relativeToChangelogFile="true"/>
+<!--    <include file="changesets/05-transaction-value-update.xml" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>

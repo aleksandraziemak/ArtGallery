@@ -1,4 +1,4 @@
-package com.artgallery.infrastructure.jooq;
+package com.artgallery.infrastructure.config.jooq;
 
 import org.jooq.conf.RenderQuotedNames;
 import org.springframework.boot.autoconfigure.jooq.DefaultConfigurationCustomizer;
