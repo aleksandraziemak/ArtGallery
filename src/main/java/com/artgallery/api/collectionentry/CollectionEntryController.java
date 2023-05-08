@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1/collection")
+@RequestMapping("/api/1/collectionEntry")
 public class CollectionEntryController {
 
     private final CollectionEntryService collectionEntryService;

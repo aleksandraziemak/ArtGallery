@@ -2,6 +2,8 @@ package com.artgallery;
 
 import com.artgallery.config.PostgresqlContainerWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.jooq.DSLContext;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
@@ -34,4 +36,8 @@ public class BaseTestSpecification {
 
     @Autowired
     public DSLContext dslContext;
+
+    protected BigDecimal formatBigDecimal(BigDecimal value) {
+        return value.setScale(2, RoundingMode.CEILING);
+    }
 }
