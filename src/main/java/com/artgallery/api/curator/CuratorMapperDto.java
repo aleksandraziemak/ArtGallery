@@ -16,6 +16,7 @@ public class CuratorMapperDto {
         curatorDto.setId(curator.getId());
         curatorDto.setFirstName(curator.getFirstName());
         curatorDto.setLastName(curator.getLastName());
+        curatorDto.setSalary(curator.getSalary());
         return curatorDto;
     }
 
