@@ -1,5 +1,6 @@
 package com.artgallery.api.painting;
 
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,4 +11,5 @@ public class EditPaintingDto {
     private long year;
     private MovementDto movement;
     private StatusDto status;
+    private PaintingEstimatedPriceDto paintingEstimatedPrice;
 }

@@ -1,7 +1,7 @@
 package com.artgallery.infrastructure.nbp;
 
 import com.artgallery.domain.model.Transaction;
-import com.artgallery.domain.model.TransactionCurrency;
+import com.artgallery.domain.model.Currency;
 import java.util.Map;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -15,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 public class NbpAdapter {
     private final RestTemplate restTemplate;
     private final NbpProperties nbpProperties;
-    private static final Map<TransactionCurrency, String> MAP = Map.of(
-        TransactionCurrency.EUR, "eur",
-        TransactionCurrency.USD, "usd"
+    private static final Map<Currency, String> MAP = Map.of(
+        Currency.EUR, "eur",
+        Currency.USD, "usd"
     );
 
     public Float getCurrency(Transaction transaction) {

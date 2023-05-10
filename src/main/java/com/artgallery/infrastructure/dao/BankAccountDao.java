@@ -30,9 +30,11 @@ public class BankAccountDao {
     }
 
     public Long addBankAccount(BankAccount bankAccount) {
-        return dslContext.insertInto(BANK_ACCOUNT,
-                BANK_ACCOUNT.NAME, BANK_ACCOUNT.ACCOUNT_NUMBER, BANK_ACCOUNT.BALANCE)
-            .values(bankAccount.getName(), bankAccount.getAccountNumber(), bankAccount.getBalance())
+        return dslContext.insertInto(BANK_ACCOUNT)
+            .set(BANK_ACCOUNT.NAME, bankAccount.getName())
+            .set(BANK_ACCOUNT.ACCOUNT_NUMBER, bankAccount.getAccountNumber())
+            .set(BANK_ACCOUNT.BALANCE, bankAccount.getBalance())
+            .set(BANK_ACCOUNT.CURRENCY, bankAccount.getCurrency().name())
             .returning()
             .fetchOne()
             .getId();
@@ -43,6 +45,7 @@ public class BankAccountDao {
             .set(BANK_ACCOUNT.NAME, bankAccount.getName())
             .set(BANK_ACCOUNT.ACCOUNT_NUMBER, bankAccount.getAccountNumber())
             .set(BANK_ACCOUNT.BALANCE, bankAccount.getBalance())
+            .set(BANK_ACCOUNT.CURRENCY, bankAccount.getCurrency().name())
             .where(BANK_ACCOUNT.ID.eq(bankAccount.getId()))
             .execute();
     }

@@ -30,9 +30,13 @@ public class PaintingDao {
     }
 
     public void addPainting(Painting painting) {
-        dslContext.insertInto(PAINTING,
-                PAINTING.TITLE, PAINTING.YEAR, PAINTING.MOVEMENT, PAINTING.STATUS)
-            .values(painting.getTitle(), painting.getYear(), painting.getMovement().name(), painting.getStatus().name())
+        dslContext.insertInto(PAINTING)
+            .set(PAINTING.TITLE, painting.getTitle())
+            .set(PAINTING.YEAR, painting.getYear())
+            .set(PAINTING.MOVEMENT, painting.getMovement().name())
+            .set(PAINTING.STATUS, painting.getStatus().name())
+            .set(PAINTING.ESTIMATED_PRICE, painting.getPaintingEstimatedPrice().getEstimatedPrice())
+            .set(PAINTING.ESTIMATED_PRICE_CURRENCY, painting.getPaintingEstimatedPrice().getCurrency().name())
             .execute();
     }
 
@@ -42,6 +46,8 @@ public class PaintingDao {
             .set(PAINTING.YEAR, painting.getYear())
             .set(PAINTING.MOVEMENT, painting.getMovement().name())
             .set(PAINTING.STATUS, painting.getStatus().name())
+            .set(PAINTING.ESTIMATED_PRICE, painting.getPaintingEstimatedPrice().getEstimatedPrice())
+            .set(PAINTING.ESTIMATED_PRICE_CURRENCY, painting.getPaintingEstimatedPrice().getCurrency().name())
             .where(PAINTING.ID.eq(painting.getId()))
             .execute();
     }

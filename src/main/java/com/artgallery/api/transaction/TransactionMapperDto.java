@@ -1,7 +1,7 @@
 package com.artgallery.api.transaction;
 
 import com.artgallery.domain.model.Transaction;
-import com.artgallery.domain.model.TransactionCurrency;
+import com.artgallery.domain.model.Currency;
 import com.artgallery.domain.model.TransactionType;
 import com.artgallery.domain.model.TransactionValue;
 import java.util.List;
@@ -41,7 +41,7 @@ public class TransactionMapperDto {
 
     private static TransactionValue map(TransactionValueDto transactionValueDto) {
         TransactionValue transactionValue = new TransactionValue();
-        transactionValue.setCurrency(TransactionCurrency.valueOf(transactionValueDto.getCurrency().name()));
+        transactionValue.setCurrency(Currency.valueOf(transactionValueDto.getCurrency().name()));
         transactionValue.setValue(transactionValueDto.getValue());
         return transactionValue;
     }

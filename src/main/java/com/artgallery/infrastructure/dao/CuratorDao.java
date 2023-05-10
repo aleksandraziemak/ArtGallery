@@ -22,9 +22,10 @@ public class CuratorDao {
     }
 
     public Long addCurator(Curator curator) {
-        return dslContext.insertInto(CURATOR,
-                CURATOR.FIRST_NAME, CURATOR.LAST_NAME, CURATOR.SALARY)
-            .values(curator.getFirstName(), curator.getLastName(), curator.getSalary())
+        return dslContext.insertInto(CURATOR)
+            .set(CURATOR.FIRST_NAME, curator.getFirstName())
+            .set(CURATOR.LAST_NAME, curator.getLastName())
+            .set(CURATOR.SALARY, curator.getSalary())
             .returning()
             .fetchOne()
             .getId();

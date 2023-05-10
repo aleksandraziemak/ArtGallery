@@ -2,7 +2,7 @@ package com.artgallery.infrastructure;
 
 import com.artgallery.domain.TransactionRepository;
 import com.artgallery.domain.model.Transaction;
-import com.artgallery.domain.model.TransactionCurrency;
+import com.artgallery.domain.model.Currency;
 import com.artgallery.domain.model.TransactionValue;
 import com.artgallery.infrastructure.dao.TransactionDao;
 import com.artgallery.infrastructure.nbp.NbpAdapter;
@@ -25,15 +25,15 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public Long addTransaction(Transaction transaction) {
-        if (transaction.getTransactionValue().getCurrency() != TransactionCurrency.PLN) {
+        if (transaction.getTransactionValue().getCurrency() != Currency.PLN) {
             transaction.setTransactionValue(calculateValue(transaction));
         }
         return transactionDao.addTransaction(transaction);
     }
 
     private TransactionValue calculateValue(Transaction transaction) {
-        return new TransactionValue(TransactionCurrency.PLN,
-            transaction.getTransactionValue().getValue().multiply(BigDecimal.valueOf(nbpAdapter.getCurrency(transaction))));
+        return new TransactionValue(transaction.getTransactionValue().getValue().multiply(BigDecimal.valueOf(nbpAdapter.getCurrency(transaction))),
+            Currency.PLN);
     }
 
     @Override

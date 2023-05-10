@@ -1,7 +1,10 @@
 package com.artgallery.api.painting;
 
+import com.artgallery.api.CurrencyDto;
+import com.artgallery.domain.model.Currency;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
+import com.artgallery.domain.model.PaintingEstimatedPrice;
 import com.artgallery.domain.model.Status;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class PaintingMapperDto {
         paintingDto.setYear(painting.getYear());
         paintingDto.setMovement(MovementDto.valueOf(painting.getMovement().name()));
         paintingDto.setStatus(StatusDto.valueOf(painting.getStatus().name()));
+        paintingDto.setPaintingEstimatedPrice(map(painting.getPaintingEstimatedPrice()));
         return paintingDto;
     }
 
@@ -33,6 +37,7 @@ public class PaintingMapperDto {
         painting.setYear(paintingDto.getYear());
         painting.setMovement(Movement.valueOf(paintingDto.getMovement().name()));
         painting.setStatus(Status.valueOf(paintingDto.getStatus().name()));
+        painting.setPaintingEstimatedPrice(map(paintingDto.getPaintingEstimatedPrice()));
         return painting;
     }
 
@@ -42,6 +47,21 @@ public class PaintingMapperDto {
         painting.setYear(paintingDto.getYear());
         painting.setMovement(Movement.valueOf(paintingDto.getMovement().name()));
         painting.setStatus(Status.valueOf(paintingDto.getStatus().name()));
+        painting.setPaintingEstimatedPrice(map(paintingDto.getPaintingEstimatedPrice()));
         return painting;
+    }
+
+    private static PaintingEstimatedPriceDto map(PaintingEstimatedPrice price) {
+        PaintingEstimatedPriceDto priceDto = new PaintingEstimatedPriceDto();
+        priceDto.setEstimatedPrice(price.getEstimatedPrice());
+        priceDto.setCurrency(CurrencyDto.valueOf(price.getCurrency().name()));
+        return priceDto;
+    }
+
+    private static PaintingEstimatedPrice map(PaintingEstimatedPriceDto priceDto) {
+        PaintingEstimatedPrice price = new PaintingEstimatedPrice();
+        price.setEstimatedPrice(priceDto.getEstimatedPrice());
+        price.setCurrency(Currency.valueOf(priceDto.getCurrency().name()));
+        return price;
     }
 }
