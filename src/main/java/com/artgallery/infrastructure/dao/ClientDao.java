@@ -22,9 +22,9 @@ public class ClientDao {
     }
 
     public Long addClient(Client client) {
-        return dslContext.insertInto(CLIENT,
-                CLIENT.FIRST_NAME, CLIENT.LAST_NAME)
-            .values(client.getFirstName(), client.getLastName())
+        return dslContext.insertInto(CLIENT)
+            .set(CLIENT.FIRST_NAME, client.getFirstName())
+            .set(CLIENT.LAST_NAME, client.getLastName())
             .returning()
             .fetchOne()
             .getId();

@@ -10,13 +10,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.artgallery.BaseTestSpecification;
+import com.artgallery.api.CurrencyDto;
 import com.artgallery.api.painting.AddPaintingDto;
 import com.artgallery.api.painting.EditPaintingDto;
 import com.artgallery.api.painting.MovementDto;
 import com.artgallery.api.painting.PaintingDto;
+import com.artgallery.api.painting.PaintingEstimatedPriceDto;
 import com.artgallery.api.painting.StatusDto;
 import com.artgallery.dao.db.tables.records.PaintingRecord;
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
@@ -41,6 +44,8 @@ public class PaintingIntTest extends BaseTestSpecification {
         assertEquals(record.getYear(), request.getYear());
         assertEquals(record.getStatus(), request.getStatus().name());
         assertEquals(record.getMovement(), request.getMovement().name());
+        assertEquals(record.getEstimatedPrice(), formatBigDecimal(request.getPaintingEstimatedPrice().getEstimatedPrice()));
+        assertEquals(record.getEstimatedPriceCurrency(), request.getPaintingEstimatedPrice().getCurrency().name());
     }
 
     @Test
@@ -62,6 +67,8 @@ public class PaintingIntTest extends BaseTestSpecification {
         assertEquals(response.get(0).getYear(), 1234L);
         assertEquals(response.get(0).getMovement(), MovementDto.ART_DECO);
         assertEquals(response.get(0).getStatus(), StatusDto.SOLD);
+        assertEquals(response.get(0).getPaintingEstimatedPrice().getEstimatedPrice(), formatBigDecimal(BigDecimal.valueOf(10000.00)));
+        assertEquals(response.get(0).getPaintingEstimatedPrice().getCurrency(), CurrencyDto.PLN);
     }
 
     @Test
@@ -97,6 +104,8 @@ public class PaintingIntTest extends BaseTestSpecification {
         assertEquals(record.getYear(), request.getYear());
         assertEquals(record.getStatus(), request.getStatus().name());
         assertEquals(record.getMovement(), request.getMovement().name());
+        assertEquals(record.getEstimatedPrice(), formatBigDecimal(request.getPaintingEstimatedPrice().getEstimatedPrice()));
+        assertEquals(record.getEstimatedPriceCurrency(), request.getPaintingEstimatedPrice().getCurrency().name());
     }
 
     private AddPaintingDto createAddPaintingDto() {
@@ -105,6 +114,7 @@ public class PaintingIntTest extends BaseTestSpecification {
         request.setYear(1234L);
         request.setStatus(StatusDto.SOLD);
         request.setMovement(MovementDto.ART_DECO);
+        request.setPaintingEstimatedPrice(createPaintingEstimatedPriceDto());
         return request;
     }
 
@@ -114,6 +124,14 @@ public class PaintingIntTest extends BaseTestSpecification {
         request.setYear(5678L);
         request.setStatus(StatusDto.OWNED);
         request.setMovement(MovementDto.BAROQUE);
+        request.setPaintingEstimatedPrice(createPaintingEstimatedPriceDto());
         return request;
+    }
+
+    private PaintingEstimatedPriceDto createPaintingEstimatedPriceDto() {
+        PaintingEstimatedPriceDto estimatedPriceDto = new PaintingEstimatedPriceDto();
+        estimatedPriceDto.setEstimatedPrice(formatBigDecimal(BigDecimal.valueOf(10000.00)));
+        estimatedPriceDto.setCurrency(CurrencyDto.PLN);
+        return estimatedPriceDto;
     }
 }

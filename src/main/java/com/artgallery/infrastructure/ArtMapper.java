@@ -13,9 +13,10 @@ import com.artgallery.domain.model.CollectionEntry;
 import com.artgallery.domain.model.Curator;
 import com.artgallery.domain.model.Movement;
 import com.artgallery.domain.model.Painting;
+import com.artgallery.domain.model.PaintingEstimatedPrice;
 import com.artgallery.domain.model.Status;
 import com.artgallery.domain.model.Transaction;
-import com.artgallery.domain.model.TransactionCurrency;
+import com.artgallery.domain.model.Currency;
 import com.artgallery.domain.model.TransactionType;
 import com.artgallery.domain.model.TransactionValue;
 import java.math.BigDecimal;
@@ -28,6 +29,8 @@ public class ArtMapper {
         painting.setYear(record.getYear());
         painting.setTitle(record.getTitle());
         painting.setStatus(Status.valueOf(record.getStatus()));
+        painting.setPaintingEstimatedPrice(createPaintingEstimatedPrice(record.getEstimatedPrice(),
+            Currency.valueOf(record.getEstimatedPriceCurrency())));
         return painting;
     }
 
@@ -72,9 +75,9 @@ public class ArtMapper {
         bankAccount.setName(record.getName());
         bankAccount.setAccountNumber(record.getAccountNumber());
         bankAccount.setBalance(record.getBalance());
+        bankAccount.setCurrency(Currency.valueOf(record.getCurrency()));
         return bankAccount;
     }
-
 
     public static Transaction mapTransaction(TransactionRecord record) {
         Transaction transaction = new Transaction(record.getId());
@@ -82,16 +85,18 @@ public class ArtMapper {
         transaction.setCuratorId(record.getCuratorId());
         transaction.setClientId(record.getClientId());
         transaction.setBankAccountId(record.getBankAccountId());
-        transaction.setTransactionValue(createTransactionValue(record.getValue()));
+        transaction.setTransactionValue(createTransactionValue(record.getValue(),
+            Currency.valueOf(record.getValueCurrency())));
         transaction.setDate(record.getDate());
         transaction.setType(TransactionType.valueOf(record.getType()));
         return transaction;
     }
 
-    private static TransactionValue createTransactionValue(BigDecimal value) {
-        TransactionValue transactionValue = new TransactionValue();
-        transactionValue.setValue(value);
-        transactionValue.setCurrency(TransactionCurrency.PLN);
-        return transactionValue;
+    private static TransactionValue createTransactionValue(BigDecimal value, Currency currency) {
+        return new TransactionValue(value, currency);
+    }
+
+    private static PaintingEstimatedPrice createPaintingEstimatedPrice(BigDecimal value, Currency currency) {
+        return new PaintingEstimatedPrice(value, currency);
     }
 }

@@ -26,14 +26,16 @@ public class CollectionEntryDao {
             .leftJoin(CURATOR).on(COLLECTION_ENTRY.CURATOR_ID.eq(CURATOR.ID))
             .fetch()
             .map(record ->
-                ArtMapper.mapCollection(record.into(COLLECTION_ENTRY).getId(), record.into(PAINTING), record.into(AUTHOR), record.into(CURATOR))
+                ArtMapper.mapCollection(record.into(COLLECTION_ENTRY).getId(),
+                    record.into(PAINTING), record.into(AUTHOR), record.into(CURATOR))
             );
     }
 
     public Long addCollectionEntry(Long paintingId, Long authorId, Long curatorId) {
-        return dslContext.insertInto(COLLECTION_ENTRY,
-                COLLECTION_ENTRY.PAINTING_ID, COLLECTION_ENTRY.AUTHOR_ID, COLLECTION_ENTRY.CURATOR_ID)
-            .values(paintingId, authorId, curatorId)
+        return dslContext.insertInto(COLLECTION_ENTRY)
+            .set(COLLECTION_ENTRY.PAINTING_ID, paintingId)
+            .set(COLLECTION_ENTRY.AUTHOR_ID, authorId)
+            .set(COLLECTION_ENTRY.CURATOR_ID, curatorId)
             .returning()
             .fetchOne()
             .getId();

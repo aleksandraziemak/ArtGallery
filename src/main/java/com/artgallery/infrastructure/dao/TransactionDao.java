@@ -22,12 +22,15 @@ public class TransactionDao {
     }
 
     public Long addTransaction(Transaction transaction) {
-        return dslContext.insertInto(TRANSACTION,
-                TRANSACTION.PAINTING_ID, TRANSACTION.CURATOR_ID, TRANSACTION.CLIENT_ID,
-                TRANSACTION.BANK_ACCOUNT_ID, TRANSACTION.VALUE, TRANSACTION.DATE, TRANSACTION.TYPE)
-            .values(transaction.getPaintingId(), transaction.getCuratorId(), transaction.getClientId(),
-                transaction.getBankAccountId(), transaction.getTransactionValue().getValue(),
-                transaction.getDate(), transaction.getType().name())
+        return dslContext.insertInto(TRANSACTION)
+            .set(TRANSACTION.PAINTING_ID, transaction.getPaintingId())
+            .set(TRANSACTION.CURATOR_ID, transaction.getCuratorId())
+            .set(TRANSACTION.CLIENT_ID, transaction.getClientId())
+            .set(TRANSACTION.BANK_ACCOUNT_ID, transaction.getBankAccountId())
+            .set(TRANSACTION.TYPE, transaction.getType().name())
+            .set(TRANSACTION.VALUE, transaction.getTransactionValue().getValue())
+            .set(TRANSACTION.VALUE_CURRENCY, transaction.getTransactionValue().getCurrency().name())
+            .set(TRANSACTION.DATE, transaction.getDate())
             .returning()
             .fetchOne()
             .getId();

@@ -8,18 +8,19 @@ import com.artgallery.dao.db.DefaultSchema;
 import com.artgallery.dao.db.Keys;
 import com.artgallery.dao.db.tables.records.PaintingRecord;
 
+import java.math.BigDecimal;
 import java.util.function.Function;
 
 import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function5;
+import org.jooq.Function7;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row5;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -83,6 +84,16 @@ public class Painting extends TableImpl<PaintingRecord> {
      * The column <code>PAINTING.STATUS</code>.
      */
     public final TableField<PaintingRecord, String> STATUS = createField(DSL.name("STATUS"), SQLDataType.CLOB.nullable(false), this, "");
+
+    /**
+     * The column <code>PAINTING.ESTIMATED_PRICE</code>.
+     */
+    public final TableField<PaintingRecord, BigDecimal> ESTIMATED_PRICE = createField(DSL.name("ESTIMATED_PRICE"), SQLDataType.DECIMAL(10, 2).nullable(false), this, "");
+
+    /**
+     * The column <code>PAINTING.ESTIMATED_PRICE_CURRENCY</code>.
+     */
+    public final TableField<PaintingRecord, String> ESTIMATED_PRICE_CURRENCY = createField(DSL.name("ESTIMATED_PRICE_CURRENCY"), SQLDataType.CLOB.nullable(false), this, "");
 
     private Painting(Name alias, Table<PaintingRecord> aliased) {
         this(alias, aliased, null);
@@ -172,18 +183,18 @@ public class Painting extends TableImpl<PaintingRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Long, String, Long, String, String> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row7<Long, String, Long, String, String, BigDecimal, String> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function5<? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function7<? super Long, ? super String, ? super Long, ? super String, ? super String, ? super BigDecimal, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -191,7 +202,7 @@ public class Painting extends TableImpl<PaintingRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Long, ? super String, ? super Long, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function7<? super Long, ? super String, ? super Long, ? super String, ? super String, ? super BigDecimal, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

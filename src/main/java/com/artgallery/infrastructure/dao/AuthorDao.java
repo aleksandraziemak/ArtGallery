@@ -22,9 +22,11 @@ public class AuthorDao {
     }
 
     public Long addAuthor(Author author) {
-        return dslContext.insertInto(AUTHOR,
-                AUTHOR.FIRST_NAME, AUTHOR.SECOND_NAME, AUTHOR.LAST_NAME, AUTHOR.COUNTRY)
-            .values(author.getFirstName(), author.getSecondName().orElse(null), author.getLastName(), author.getCountry())
+        return dslContext.insertInto(AUTHOR)
+            .set(AUTHOR.FIRST_NAME, author.getFirstName())
+            .set(AUTHOR.SECOND_NAME, author.getSecondName().orElse(null))
+            .set(AUTHOR.LAST_NAME, author.getLastName())
+            .set(AUTHOR.COUNTRY, author.getCountry())
             .returning()
             .fetchOne()
             .getId();

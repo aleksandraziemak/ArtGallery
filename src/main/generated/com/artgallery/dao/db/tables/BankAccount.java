@@ -15,12 +15,12 @@ import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function4;
+import org.jooq.Function5;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -79,6 +79,11 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
      * The column <code>BANK_ACCOUNT.BALANCE</code>.
      */
     public final TableField<BankAccountRecord, BigDecimal> BALANCE = createField(DSL.name("BALANCE"), SQLDataType.DECIMAL(10, 2).nullable(false), this, "");
+
+    /**
+     * The column <code>BANK_ACCOUNT.CURRENCY</code>.
+     */
+    public final TableField<BankAccountRecord, String> CURRENCY = createField(DSL.name("CURRENCY"), SQLDataType.CLOB.nullable(false), this, "");
 
     private BankAccount(Name alias, Table<BankAccountRecord> aliased) {
         this(alias, aliased, null);
@@ -168,18 +173,18 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Long, String, String, BigDecimal> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Long, String, String, BigDecimal, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function4<? super Long, ? super String, ? super String, ? super BigDecimal, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function5<? super Long, ? super String, ? super String, ? super BigDecimal, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -187,7 +192,7 @@ public class BankAccount extends TableImpl<BankAccountRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super Long, ? super String, ? super String, ? super BigDecimal, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super Long, ? super String, ? super String, ? super BigDecimal, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

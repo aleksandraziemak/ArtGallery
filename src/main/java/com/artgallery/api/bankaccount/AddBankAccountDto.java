@@ -1,5 +1,6 @@
 package com.artgallery.api.bankaccount;
 
+import com.artgallery.api.CurrencyDto;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +12,5 @@ public class AddBankAccountDto {
     private String name;
     private String accountNumber;
     private BigDecimal balance;
+    private CurrencyDto currency;
 }

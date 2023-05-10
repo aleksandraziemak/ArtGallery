@@ -1,6 +1,7 @@
 package com.artgallery.domain.model;
 
-public enum TransactionCurrency {
+public enum Currency {
+    CHF,
     EUR,
     USD,
     PLN

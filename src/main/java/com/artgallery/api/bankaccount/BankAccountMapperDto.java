@@ -1,6 +1,8 @@
 package com.artgallery.api.bankaccount;
 
+import com.artgallery.api.CurrencyDto;
 import com.artgallery.domain.model.BankAccount;
+import com.artgallery.domain.model.Currency;
 import java.util.List;
 
 public class BankAccountMapperDto {
@@ -21,6 +23,7 @@ public class BankAccountMapperDto {
         bankAccountDto.setName(bankAccount.getName());
         bankAccountDto.setAccountNumber(bankAccount.getAccountNumber());
         bankAccountDto.setBalance(bankAccount.getBalance());
+        bankAccountDto.setCurrency(CurrencyDto.valueOf(bankAccount.getCurrency().name()));
         return bankAccountDto;
     }
 
@@ -29,6 +32,7 @@ public class BankAccountMapperDto {
         bankAccount.setName(bankAccountDto.getName());
         bankAccount.setAccountNumber(bankAccountDto.getAccountNumber());
         bankAccount.setBalance(bankAccountDto.getBalance());
+        bankAccount.setCurrency(Currency.valueOf(bankAccountDto.getCurrency().name()));
         return bankAccount;
     }
 
@@ -37,6 +41,7 @@ public class BankAccountMapperDto {
         bankAccount.setName(bankAccountDto.getName());
         bankAccount.setAccountNumber(bankAccountDto.getAccountNumber());
         bankAccount.setBalance(bankAccountDto.getBalance());
+        bankAccount.setCurrency(Currency.valueOf(bankAccountDto.getCurrency().name()));
         return bankAccount;
     }
 }

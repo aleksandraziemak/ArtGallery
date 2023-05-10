@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.artgallery.BaseTestSpecification;
+import com.artgallery.api.CurrencyDto;
 import com.artgallery.api.bankaccount.AddBankAccountDto;
 import com.artgallery.api.bankaccount.BankAccountDto;
 import com.artgallery.api.bankaccount.EditBankAccountDto;
@@ -39,6 +40,7 @@ public class BankAccountIntTest extends BaseTestSpecification {
         assertEquals(record.getName(), request.getName());
         assertEquals(record.getAccountNumber(), request.getAccountNumber());
         assertEquals(record.getBalance(), formatBigDecimal(request.getBalance()));
+        assertEquals(record.getCurrency(), request.getCurrency().name());
     }
 
     @Test
@@ -59,6 +61,7 @@ public class BankAccountIntTest extends BaseTestSpecification {
         assertEquals(response.get(0).getName(), "Account");
         assertEquals(response.get(0).getAccountNumber(), "11111");
         assertEquals(response.get(0).getBalance(), formatBigDecimal(BigDecimal.valueOf(5000.00)));
+        assertEquals(response.get(0).getCurrency(), CurrencyDto.PLN);
     }
 
     @Test
@@ -93,6 +96,7 @@ public class BankAccountIntTest extends BaseTestSpecification {
         assertEquals(record.getName(), request.getName());
         assertEquals(record.getAccountNumber(), request.getAccountNumber());
         assertEquals(record.getBalance(), formatBigDecimal(request.getBalance()));
+        assertEquals(record.getCurrency(), request.getCurrency().name());
     }
 
     private AddBankAccountDto createAddBankAccountDto() {
@@ -100,6 +104,7 @@ public class BankAccountIntTest extends BaseTestSpecification {
         request.setName("Account");
         request.setAccountNumber("11111");
         request.setBalance(BigDecimal.valueOf(5000.00));
+        request.setCurrency(CurrencyDto.PLN);
         return request;
     }
 
@@ -108,6 +113,7 @@ public class BankAccountIntTest extends BaseTestSpecification {
         request.setName("NewAccount");
         request.setAccountNumber("99999");
         request.setBalance(BigDecimal.valueOf(50000.00));
+        request.setCurrency(CurrencyDto.EUR);
         return request;
     }
 }
