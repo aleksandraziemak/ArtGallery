@@ -12,6 +12,6 @@ public class AddTransactionDto {
     private Long clientId;
     private Long curatorId;
     private Long bankAccountId;
-    private TransactionValueDto transactionValue;
+    private AddTransactionValueDto transactionValue;
     private LocalDate date;
 }

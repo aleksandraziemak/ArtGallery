@@ -10,6 +10,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class NbpProperties {
     private String host;
     private String currencyPath;
-
-
+    private String exchangeRates;
 }

@@ -19,3 +19,4 @@ spring:
 nbp:
   host: "http://api.nbp.pl"
   currency-path: "/api/exchangerates/rates/c/{currency}/today/"
+  exchange-rates: "/api/exchangerates/tables/c/"

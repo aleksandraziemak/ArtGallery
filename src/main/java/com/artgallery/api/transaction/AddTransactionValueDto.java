@@ -1,5 +1,6 @@
-package com.artgallery.domain.model;
+package com.artgallery.api.transaction;
 
+import com.artgallery.api.CurrencyDto;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaintingEstimatedPrice {
-    private BigDecimal estimatedPrice;
-    private Currency currency;
+public class AddTransactionValueDto {
+    private BigDecimal value;
+    private CurrencyDto currency;
 }

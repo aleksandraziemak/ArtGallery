@@ -42,7 +42,6 @@ public class CollectionEntryIntTest extends BaseTestSpecification {
     }
 
     @Test
-    @Sql("classpath:test-data/mock-collection-entry-add.sql")
     @Sql("classpath:test-data/mock-collection-entry.sql")
     public void getCollectionEntry() throws Exception {
         //when
@@ -63,7 +62,6 @@ public class CollectionEntryIntTest extends BaseTestSpecification {
     }
 
     @Test
-    @Sql("classpath:test-data/mock-collection-entry-add.sql")
     @Sql("classpath:test-data/mock-collection-entry.sql")
     public void deleteCollectionEntry() throws Exception {
         //when
@@ -78,7 +76,6 @@ public class CollectionEntryIntTest extends BaseTestSpecification {
     }
 
     @Test
-    @Sql("classpath:test-data/mock-collection-entry-add.sql")
     @Sql("classpath:test-data/mock-collection-entry.sql")
     public void patchCollectionEntry() throws Exception {
         //given
