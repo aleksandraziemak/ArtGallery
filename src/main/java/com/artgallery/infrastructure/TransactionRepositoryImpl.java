@@ -1,9 +1,9 @@
 package com.artgallery.infrastructure;
 
 import com.artgallery.domain.TransactionRepository;
-import com.artgallery.domain.model.Transaction;
 import com.artgallery.domain.model.Currency;
-import com.artgallery.domain.model.TransactionValue;
+import com.artgallery.domain.model.ExchangeRate;
+import com.artgallery.domain.model.Transaction;
 import com.artgallery.infrastructure.dao.TransactionDao;
 import com.artgallery.infrastructure.nbp.NbpAdapter;
 import java.math.BigDecimal;
@@ -25,19 +25,18 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     @Override
     public Long addTransaction(Transaction transaction) {
-        if (transaction.getTransactionValue().getCurrency() != Currency.PLN) {
-            transaction.setTransactionValue(calculateValue(transaction));
-        }
         return transactionDao.addTransaction(transaction);
-    }
-
-    private TransactionValue calculateValue(Transaction transaction) {
-        return new TransactionValue(transaction.getTransactionValue().getValue().multiply(BigDecimal.valueOf(nbpAdapter.getCurrency(transaction))),
-            Currency.PLN);
     }
 
     @Override
     public void deleteTransaction(Long id) {
         transactionDao.deleteTransaction(id);
+    }
+
+    @Override
+    public List<ExchangeRate> getExchangeRates() {
+        List<ExchangeRate> list = nbpAdapter.getExchangeRates();
+        list.add(new ExchangeRate(BigDecimal.valueOf(1.00), Currency.PLN));
+        return list;
     }
 }

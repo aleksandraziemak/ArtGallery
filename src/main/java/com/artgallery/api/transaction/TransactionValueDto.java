@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionValueDto {
-    private CurrencyDto currency;
     private BigDecimal value;
+    private CurrencyDto currency;
 }

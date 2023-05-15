@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -36,6 +37,9 @@ public class BaseTestSpecification {
 
     @Autowired
     public DSLContext dslContext;
+
+    @Autowired
+    public MockRestServiceServer mockServer;
 
     protected BigDecimal formatBigDecimal(BigDecimal value) {
         return value.setScale(2, RoundingMode.CEILING);

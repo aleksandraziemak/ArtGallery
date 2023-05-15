@@ -1,7 +1,6 @@
 package com.artgallery.api.painting;
 
 import com.artgallery.api.CurrencyDto;
-import com.artgallery.domain.model.Currency;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;

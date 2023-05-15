@@ -1,7 +1,8 @@
 package com.artgallery.api.transaction;
 
-import com.artgallery.domain.model.Transaction;
+import com.artgallery.api.CurrencyDto;
 import com.artgallery.domain.model.Currency;
+import com.artgallery.domain.model.Transaction;
 import com.artgallery.domain.model.TransactionType;
 import com.artgallery.domain.model.TransactionValue;
 import java.util.List;
@@ -21,7 +22,8 @@ public class TransactionMapperDto {
         transactionDto.setCuratorId(transaction.getCuratorId());
         transactionDto.setClientId(transaction.getClientId());
         transactionDto.setBankAccountId(transaction.getBankAccountId());
-        transactionDto.setValue(transaction.getTransactionValue().getValue());
+        transactionDto.setTransactionValue(map(transaction.getTransactionValue()));
+        transactionDto.setOriginalTransactionValue(map(transaction.getOriginalTransactionValue()));
         transactionDto.setDate(transaction.getDate());
         transactionDto.setType(TransactionTypeDto.valueOf(transaction.getType().name()));
         return transactionDto;
@@ -34,15 +36,23 @@ public class TransactionMapperDto {
         transaction.setClientId(transactionDto.getClientId());
         transaction.setBankAccountId(transactionDto.getBankAccountId());
         transaction.setTransactionValue(map(transactionDto.getTransactionValue()));
+        transaction.setOriginalTransactionValue(map(transactionDto.getTransactionValue()));
         transaction.setDate(transactionDto.getDate());
         transaction.setType(TransactionType.valueOf(transactionDto.getType().name()));
         return transaction;
     }
 
-    private static TransactionValue map(TransactionValueDto transactionValueDto) {
+    private static TransactionValue map(AddTransactionValueDto transactionValueDto) {
         TransactionValue transactionValue = new TransactionValue();
-        transactionValue.setCurrency(Currency.valueOf(transactionValueDto.getCurrency().name()));
         transactionValue.setValue(transactionValueDto.getValue());
+        transactionValue.setCurrency(Currency.valueOf(transactionValueDto.getCurrency().name()));
         return transactionValue;
+    }
+
+    private static TransactionValueDto map(TransactionValue transactionValue) {
+        TransactionValueDto transactionValueDto = new TransactionValueDto();
+        transactionValueDto.setValue(transactionValue.getValue());
+        transactionValueDto.setCurrency(CurrencyDto.valueOf(transactionValue.getCurrency().name()));
+        return transactionValueDto;
     }
 }

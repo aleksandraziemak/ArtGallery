@@ -2,6 +2,7 @@ package com.artgallery.api.painting;
 
 import com.artgallery.domain.model.Painting;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/1/paintings")
+@AllArgsConstructor
 public class PaintingController {
 
     private final PaintingService paintingService;
-
-    public PaintingController(PaintingService paintingService) {
-        this.paintingService = paintingService;
-    }
 
     @GetMapping
     ResponseEntity<List<PaintingDto>> getPaintings() {

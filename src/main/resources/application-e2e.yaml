@@ -9,3 +9,8 @@ spring:
     password: test
     url: jdbc:tc:postgresql:13.7:///test
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+
+nbp:
+  host: "http://api.testnbp.pl"
+  currency-path: "/api/exchangeratessupertest/rates/c/{currency}/today/"
+  exchange-rates: "/api/exchangeratessupertest/tables/c/"

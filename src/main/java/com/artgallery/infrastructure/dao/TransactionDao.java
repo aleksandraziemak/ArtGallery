@@ -2,6 +2,7 @@ package com.artgallery.infrastructure.dao;
 
 import static com.artgallery.dao.db.Tables.TRANSACTION;
 
+import com.artgallery.domain.BankAccountRepository;
 import com.artgallery.domain.model.Transaction;
 import com.artgallery.infrastructure.ArtMapper;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class TransactionDao {
 
     private final DSLContext dslContext;
+    private final BankAccountRepository bankAccountRepository;
 
     public List<Transaction> getTransactions() {
         return dslContext.selectFrom(TRANSACTION)
@@ -30,6 +32,8 @@ public class TransactionDao {
             .set(TRANSACTION.TYPE, transaction.getType().name())
             .set(TRANSACTION.VALUE, transaction.getTransactionValue().getValue())
             .set(TRANSACTION.VALUE_CURRENCY, transaction.getTransactionValue().getCurrency().name())
+            .set(TRANSACTION.ORIGINAL_VALUE, transaction.getOriginalTransactionValue().getValue())
+            .set(TRANSACTION.ORIGINAL_VALUE_CURRENCY, transaction.getOriginalTransactionValue().getCurrency().name())
             .set(TRANSACTION.DATE, transaction.getDate())
             .returning()
             .fetchOne()
